@@ -34,6 +34,35 @@ export type Company = {
   established: number;
 };
 
+export type CompanyStat = {
+  label: string;
+  value: string;
+  note: string;
+};
+
+export type CompanyProduct = {
+  name: string;
+  badge: string;
+  description: string;
+  features: string[];
+  price: string;
+};
+
+export type CompanyDetail = {
+  id: string;
+  vision: string;
+  heroImage: string;
+  stats: CompanyStat[];
+  about: string;
+  products: CompanyProduct[];
+  caseStudy: {
+    title: string;
+    area: string;
+    body: string;
+    result: string;
+  };
+};
+
 export type Testimonial = {
   id: string;
   role: "student" | "farmer" | "company";

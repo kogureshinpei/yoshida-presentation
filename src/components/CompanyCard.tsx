@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, Leaf } from "@phosphor-icons/react";
 import type { Company } from "@/types";
 
@@ -93,15 +94,23 @@ export default function CompanyCard({ company, onClick }: Props) {
         </div>
       )}
 
-      {/* CTA button */}
-      <button
-        type="button"
-        onClick={() => onClick?.(company)}
-        className="mt-auto w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl border border-[#2D6A4F] text-[#2D6A4F] text-sm font-medium hover:bg-[#2D6A4F] hover:text-white transition-all duration-200"
-      >
-        詳細を見る
-        <ArrowRight size={15} />
-      </button>
+      {/* CTA buttons */}
+      <div className="mt-auto flex gap-2">
+        <button
+          type="button"
+          onClick={() => onClick?.(company)}
+          className="flex-1 flex items-center justify-center gap-1 py-2.5 rounded-xl border border-gray-200 text-gray-600 text-sm font-medium hover:border-[#2D6A4F] hover:text-[#2D6A4F] transition-all duration-200"
+        >
+          概要
+        </button>
+        <Link
+          href={`/for-farmers/companies/${company.id}`}
+          className="flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl bg-[#2D6A4F] text-white text-sm font-medium hover:bg-[#1B4332] transition-all duration-200"
+        >
+          詳細ページ
+          <ArrowRight size={14} />
+        </Link>
+      </div>
     </div>
   );
 }
