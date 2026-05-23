@@ -67,7 +67,7 @@ export default function HomePage() {
           {/* Subtitle */}
           <p className="text-white/90 text-base md:text-lg leading-relaxed max-w-xl mx-auto mb-10">
             学生・社会人の農業体験から、農家の人手確保、AgTech企業と農家のマッチングまで。
-            ミノリが農業に関わるすべての人をつなぎます。
+            Go Go ふぁーまーが農業に関わるすべての人をつなぎます。
           </p>
 
           {/* CTA buttons */}
@@ -159,7 +159,7 @@ export default function HomePage() {
             農業の未来を、一緒に作ろう
           </h2>
           <p className="text-white/80 text-base leading-relaxed mb-10 max-w-xl mx-auto">
-            学生も、農家も、企業も。ミノリはすべての参加者にとって価値ある出会いの場をつくります。
+            学生も、農家も、企業も。Go Go ふぁーまーはすべての参加者にとって価値ある出会いの場をつくります。
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link

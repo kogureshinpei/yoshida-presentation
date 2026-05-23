@@ -37,7 +37,7 @@ const TESTIMONIALS: TestimonialData[] = [
     name: "鈴木 部長",
     affiliation: "AgriAI株式会社",
     comment:
-      "ミノリ経由で導入農家数が3倍に。農家との対話が深まり、製品改善サイクルが大幅に短縮されました。",
+      "Go Go ふぁーまー経由で導入農家数が3倍に。農家との対話が深まり、製品改善サイクルが大幅に短縮されました。",
     avatarColor: "#1B4332",
     avatarInitial: "鈴",
   },
@@ -68,7 +68,7 @@ export default function Testimonials() {
             className="text-3xl md:text-4xl font-bold text-[#2D6A4F] mb-3"
             style={{ fontFamily: "'Shippori Mincho', serif" }}
           >
-            ミノリで農業が変わった
+            Go Go ふぁーまーで農業が変わった
           </h2>
           <p className="text-gray-500 text-base">
             学生・農家・企業、三者それぞれの声

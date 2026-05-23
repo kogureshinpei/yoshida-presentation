@@ -2,8 +2,19 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import farmsData from "@/data/farms.json";
-import type { Farm } from "@/types";
+import companiesData from "@/data/companies.json";
+import trialMatchesData from "@/data/trialMatches.json";
+import type { Farm, Company } from "@/types";
 import ShiftCalendar from "@/components/ShiftCalendar";
+
+type TrialEntry = { companyId: string; technology: string; status: string; period: string; note: string };
+type TrialMatch = { farmId: string; trials: TrialEntry[] };
+
+const STATUS_STYLE: Record<string, { bg: string; text: string }> = {
+  "トライアル中": { bg: "bg-amber-100", text: "text-amber-700" },
+  "導入完了":     { bg: "bg-green-100",  text: "text-green-700" },
+  "検討中":       { bg: "bg-gray-100",   text: "text-gray-600" },
+};
 
 type Props = {
   params: { id: string };
@@ -49,9 +60,9 @@ const FEATURE_ICONS: Record<string, string> = {
 export default function FarmDetailPage({ params }: Props) {
   const farm = (farmsData as Farm[]).find((f) => f.id === params.id);
 
-  if (!farm) {
-    notFound();
-  }
+  if (!farm) notFound();
+
+  const farmTrials = ((trialMatchesData as TrialMatch[]).find((m) => m.farmId === farm.id)?.trials) ?? [];
 
   const availableSlots = farm.shiftSlots.reduce(
     (sum, s) => sum + Math.max(0, s.capacity - s.filled),
@@ -172,6 +183,46 @@ export default function FarmDetailPage({ params }: Props) {
                 ))}
               </ul>
             </div>
+
+            {/* AgTech trials */}
+            {farmTrials.length > 0 && (
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-1 h-5 rounded-full bg-[#C0392B] flex-shrink-0" />
+                  <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">
+                    導入中の AgTech 技術
+                  </h2>
+                </div>
+                <div className="space-y-3">
+                  {farmTrials.map((trial) => {
+                    const company = (companiesData as Company[]).find((c) => c.id === trial.companyId);
+                    if (!company) return null;
+                    const style = STATUS_STYLE[trial.status] ?? STATUS_STYLE["検討中"];
+                    const initials = company.name.replace(/株式会社|合同会社|有限会社/g, "").slice(0, 2);
+                    return (
+                      <div key={trial.companyId} className="bg-white rounded-xl border border-gray-100 p-4 flex gap-3">
+                        <div
+                          className="w-10 h-10 rounded-lg flex-shrink-0 flex items-center justify-center text-white text-xs font-bold select-none"
+                          style={{ backgroundColor: company.logoColor }}
+                        >
+                          {initials}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                            <span className="text-sm font-semibold text-gray-900 truncate">{company.name}</span>
+                            <span className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-semibold ${style.bg} ${style.text}`}>
+                              {trial.status}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-600 leading-snug mb-1">{trial.technology}</p>
+                          <p className="text-[11px] text-gray-400">{trial.period} — {trial.note}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right: Shift calendar */}

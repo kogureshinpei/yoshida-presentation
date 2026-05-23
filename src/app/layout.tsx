@@ -17,9 +17,9 @@ const shipporiMincho = Shippori_Mincho({
 });
 
 export const metadata: Metadata = {
-  title: "ミノリ | 農業マッチングプラットフォーム",
+  title: "Go Go ふぁーまー | 農業マッチングプラットフォーム",
   description:
-    "農業 × 人 × テクノロジー。学生・社会人の農業体験から、農家の人手確保、AgTech企業と農家のマッチングまで。ミノリで農業の未来をつくろう。",
+    "農業 × 人 × テクノロジー。学生・社会人の農業体験から、農家の人手確保、AgTech企業と農家のマッチングまで。Go Go ふぁーまーで農業の未来をつくろう。",
 };
 
 export default function RootLayout({

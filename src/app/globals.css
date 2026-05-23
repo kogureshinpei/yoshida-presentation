@@ -3,6 +3,7 @@
 :root {
   --color-primary: #2D6A4F;
   --color-accent: #74C69D;
+  --color-red: #C0392B;
   --color-bg: #F8F4EF;
   --font-noto: var(--font-noto);
   --font-shippori: var(--font-shippori);

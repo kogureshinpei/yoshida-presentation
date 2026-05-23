@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Plant, House, Buildings, NotePencil } from "@phosphor-icons/react";
+import { Plant, House, Buildings, NotePencil, Slideshow } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
   { href: "/for-students", label: "学生の方へ" },
   { href: "/for-farmers", label: "農家の方へ" },
   { href: "/for-farmers#companies", label: "企業の方へ" },
+  { href: "/presentation", label: "発表用" },
 ] as const;
 
 const MOBILE_TABS = [
@@ -15,6 +16,7 @@ const MOBILE_TABS = [
   { href: "/for-farmers", label: "農家", Icon: House },
   { href: "/for-farmers#companies", label: "企業", Icon: Buildings },
   { href: "/register", label: "登録", Icon: NotePencil },
+  { href: "/presentation", label: "発表用", Icon: Slideshow },
 ] as const;
 
 export default function Navigation() {
@@ -36,25 +38,28 @@ export default function Navigation() {
             className="text-2xl font-bold text-[#2D6A4F] tracking-wide hover:opacity-80 transition-opacity duration-200"
             style={{ fontFamily: "'Shippori Mincho', serif" }}
           >
-            ミノリ
+            Go Go ふぁーまー
           </Link>
 
           {/* Nav links + CTA */}
-          <div className="flex items-center gap-8">
-            {NAV_LINKS.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={[
-                  "text-sm font-medium transition-colors duration-200",
-                  isActive(href)
-                    ? "text-[#2D6A4F] border-b-2 border-[#2D6A4F] pb-0.5"
-                    : "text-gray-600 hover:text-[#2D6A4F]",
-                ].join(" ")}
-              >
-                {label}
-              </Link>
-            ))}
+          <div className="flex items-center gap-7">
+            {NAV_LINKS.map(({ href, label }) => {
+              const active = isActive(href);
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={[
+                    "text-sm font-medium pb-0.5 transition-colors duration-200",
+                    active
+                      ? "text-[#2D6A4F] border-b-2 border-[#C0392B]"
+                      : "text-gray-600 hover:text-[#2D6A4F]",
+                  ].join(" ")}
+                >
+                  {label}
+                </Link>
+              );
+            })}
             <Link
               href="/register"
               className="px-5 py-2 rounded-full bg-[#2D6A4F] text-white text-sm font-medium hover:bg-[#1f5038] transition-all duration-200 hover:shadow-md"
@@ -67,7 +72,7 @@ export default function Navigation() {
 
       {/* Mobile bottom tab bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 safe-area-inset-bottom">
-        <div className="grid grid-cols-4 h-16">
+        <div className="grid grid-cols-5 h-16">
           {MOBILE_TABS.map(({ href, label, Icon }) => {
             const active = isActive(href);
             return (
@@ -75,15 +80,16 @@ export default function Navigation() {
                 key={href}
                 href={href}
                 className={[
-                  "flex flex-col items-center justify-center gap-1 transition-colors duration-200",
+                  "relative flex flex-col items-center justify-center gap-0.5 transition-colors duration-200",
                   active ? "text-[#2D6A4F]" : "text-gray-400 hover:text-[#74C69D]",
                 ].join(" ")}
               >
-                <Icon
-                  size={22}
-                  weight={active ? "fill" : "regular"}
-                />
-                <span className="text-[10px] font-medium leading-none">{label}</span>
+                {/* Red active indicator bar */}
+                {active && (
+                  <span className="absolute top-0 left-2 right-2 h-[2px] rounded-b-full bg-[#C0392B]" />
+                )}
+                <Icon size={20} weight={active ? "fill" : "regular"} />
+                <span className="text-[9px] font-medium leading-none">{label}</span>
               </Link>
             );
           })}

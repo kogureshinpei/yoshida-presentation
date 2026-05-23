@@ -1,0 +1,74 @@
+[
+  {
+    "farmId": "farm-001",
+    "trials": [
+      { "companyId": "co-001", "technology": "FieldMind Scout — りんご・ぶどうの病害虫AI診断", "status": "トライアル中", "period": "2026年4月〜9月", "note": "うどんこ病・灰色かび病の早期検知を検証中" },
+      { "companyId": "co-005", "technology": "BioPest Zero シリーズ — 生物農薬切り替え", "status": "導入完了", "period": "2025年5月〜（継続）", "note": "殺菌剤を生物農薬に完全切り替え済み。有機JAS申請中" }
+    ]
+  },
+  {
+    "farmId": "farm-002",
+    "trials": [
+      { "companyId": "co-006", "technology": "Agri-R1 — いちご自律収穫ロボット", "status": "トライアル中", "period": "2026年2月〜6月", "note": "ハウス3棟にAgri-R1を2台配備して収穫作業の自動化を検証" },
+      { "companyId": "co-004", "technology": "FarmSense Pack — ハウス環境センサー", "status": "導入完了", "period": "2025年1月〜（継続）", "note": "温湿度・CO₂を常時計測。自動換気制御で品質が安定" }
+    ]
+  },
+  {
+    "farmId": "farm-003",
+    "trials": [
+      { "companyId": "co-002", "technology": "NeoBio-1 土壌改良製剤 — 有機農業支援", "status": "導入完了", "period": "2024年3月〜（継続）", "note": "2シーズン施用して農薬使用量66%削減。有機JAS取得済み" },
+      { "companyId": "co-005", "technology": "BioPest Zero — 露地野菜向け生物農薬", "status": "トライアル中", "period": "2026年4月〜10月", "note": "アブラムシ・ハダニへの防除効果を化学農薬比較で検証中" },
+      { "companyId": "co-008", "technology": "MicroFarm DNA — 土壌マイクロバイオーム診断", "status": "検討中", "period": "2026年秋〜（予定）", "note": "来期の有機資材処方改善に向けた土壌診断を検討中" }
+    ]
+  },
+  {
+    "farmId": "farm-004",
+    "trials": [
+      { "companyId": "co-003", "technology": "SF-X3農業用ドローン — 水稲農薬散布代行", "status": "導入完了", "period": "2025年6月〜（毎期）", "note": "田植え後の農薬散布を全量ドローン代行に切り替え。人件費80%削減" },
+      { "companyId": "co-007", "technology": "SatView Pro — 水稲生育マップ・収量予測", "status": "トライアル中", "period": "2026年5月〜10月", "note": "圃場ごとの穂肥タイミング最適化と収量予測精度の検証" }
+    ]
+  },
+  {
+    "farmId": "farm-005",
+    "trials": [
+      { "companyId": "co-005", "technology": "FeroPack 交信撹乱システム — みかん害虫ゼロ防除", "status": "導入完了", "period": "2024年2月〜（継続）", "note": "コドリンガ・ミカンコミバエへの農薬散布が不要になり、EU輸出基準をクリア" },
+      { "companyId": "co-003", "technology": "SF-X3 — 傾斜地みかん園への農薬散布", "status": "トライアル中", "period": "2026年5月〜11月", "note": "急傾斜でオペレーターが入れない地区のみかん園にドローン散布を試験中" }
+    ]
+  },
+  {
+    "farmId": "farm-006",
+    "trials": [
+      { "companyId": "co-004", "technology": "FarmSense + AutoIrrigate — 施設野菜自動灌水", "status": "導入完了", "period": "2025年3月〜（継続）", "note": "土壌水分センサー連動で灌水を完全自動化。水道代年間50万円削減" },
+      { "companyId": "co-001", "technology": "FieldMind Scout — トマト・ピーマン病害虫AI診断", "status": "トライアル中", "period": "2026年4月〜10月", "note": "灰色かび病・青枯病の発生前兆をAIで週次検出する精度を検証" },
+      { "companyId": "co-006", "technology": "WeedBot 除草ロボット — 畝間自律除草", "status": "検討中", "period": "2026年秋〜（予定）", "note": "なす・ピーマン畝間の除草剤削減に向けたWeedBot導入を検討中" }
+    ]
+  },
+  {
+    "farmId": "farm-007",
+    "trials": [
+      { "companyId": "co-002", "technology": "NeoBio-1 + SoilScan DNA診断 — ブルーベリー土壌改良", "status": "トライアル中", "period": "2026年3月〜12月", "note": "酸性土壌に特化した微生物製剤の最適配合を土壌DNA診断で特定中" },
+      { "companyId": "co-004", "technology": "FarmSense Pack — 圃場環境モニタリング", "status": "検討中", "period": "2026年秋〜（予定）", "note": "凍霜害リスク対応のためのアラート通知システムの導入を検討中" }
+    ]
+  },
+  {
+    "farmId": "farm-008",
+    "trials": [
+      { "companyId": "co-008", "technology": "GeneFert + MicroFarm DNA — 京野菜向け有機資材", "status": "トライアル中", "period": "2026年2月〜11月", "note": "賀茂なす・万願寺とうがらし品種別のゲノム最適化有機資材を2圃場で比較検証" },
+      { "companyId": "co-002", "technology": "NeoBio-1 — 京野菜土壌の微生物活性化", "status": "導入完了", "period": "2024年10月〜（継続）", "note": "連作障害が改善され、農薬使用量が従来比55%減少" }
+    ]
+  },
+  {
+    "farmId": "farm-009",
+    "trials": [
+      { "companyId": "co-003", "technology": "SF-X3 飛行代行 — ねぎ農薬散布・生育モニタリング", "status": "トライアル中", "period": "2026年4月〜10月", "note": "農薬散布代行と生育ムラの可視化を組み合わせたパッケージで検証中" },
+      { "companyId": "co-007", "technology": "SatView Pro — ねぎ生育状況の広域モニタリング", "status": "検討中", "period": "2026年秋〜（予定）", "note": "隣接圃場との生育比較で施肥最適化を図る衛星診断の導入を検討中" }
+    ]
+  },
+  {
+    "farmId": "farm-010",
+    "trials": [
+      { "companyId": "co-001", "technology": "FieldMind Scout — サトウキビ・マンゴー病害AI診断", "status": "トライアル中", "period": "2026年3月〜12月", "note": "梅雨時期のすす病・炭疽病をAI検出し、農薬散布の精度向上を検証中" },
+      { "companyId": "co-004", "technology": "FarmSense Pack — 南国高温環境モニタリング", "status": "導入完了", "period": "2025年7月〜（継続）", "note": "台風・熱波時の気温・日照アラートで農作物被害を事前に軽減" }
+    ]
+  }
+]
