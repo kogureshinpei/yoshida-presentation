@@ -3,6 +3,15 @@ import { renderHook, act } from "@testing-library/react";
 import { useFarmFilters } from "./useFarmFilters";
 import type { Farm } from "@/types";
 
+const slot = (dayOfWeek: "月" | "火" | "水" | "木" | "金" | "土" | "日", capacity: number, filled: number) => ({
+  date: "2026-06-01",
+  dayOfWeek,
+  startTime: "9:00",
+  endTime: "17:00",
+  capacity,
+  filled,
+});
+
 const makeFarm = (overrides: Partial<Farm>): Farm => ({
   id: "f-1",
   name: "テスト農場",
@@ -11,7 +20,7 @@ const makeFarm = (overrides: Partial<Farm>): Farm => ({
   crops: ["トマト"],
   description: "",
   image: "",
-  shiftSlots: [{ id: "s1", dayOfWeek: "月", startTime: "9:00", endTime: "17:00", capacity: 3, filled: 1 }],
+  shiftSlots: [slot("月", 3, 1)],
   features: [],
   rating: 4.0,
   acceptCount: 10,
@@ -19,9 +28,9 @@ const makeFarm = (overrides: Partial<Farm>): Farm => ({
 });
 
 const farms: Farm[] = [
-  makeFarm({ id: "f-1", prefecture: "北海道", crops: ["トマト"], shiftSlots: [{ id: "s1", dayOfWeek: "月", startTime: "9:00", endTime: "17:00", capacity: 3, filled: 1 }] }),
-  makeFarm({ id: "f-2", prefecture: "長野県", crops: ["りんご", "ぶどう"], shiftSlots: [{ id: "s2", dayOfWeek: "火", startTime: "9:00", endTime: "17:00", capacity: 2, filled: 2 }] }),
-  makeFarm({ id: "f-3", prefecture: "北海道", crops: ["じゃがいも"], shiftSlots: [{ id: "s3", dayOfWeek: "水", startTime: "9:00", endTime: "17:00", capacity: 4, filled: 4 }] }),
+  makeFarm({ id: "f-1", prefecture: "北海道", crops: ["トマト"], shiftSlots: [slot("月", 3, 1)] }),
+  makeFarm({ id: "f-2", prefecture: "長野県", crops: ["りんご", "ぶどう"], shiftSlots: [slot("火", 2, 2)] }),
+  makeFarm({ id: "f-3", prefecture: "北海道", crops: ["じゃがいも"], shiftSlots: [slot("水", 4, 4)] }),
 ];
 
 describe("useFarmFilters", () => {

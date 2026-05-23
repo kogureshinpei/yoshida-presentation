@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import dynamic from "next/dynamic";
 import type { Farm } from "@/types";
 
@@ -36,9 +37,10 @@ function MapFallback() {
   );
 }
 
-export class MapErrorBoundary extends (
-  require("react").Component<{ children: React.ReactNode }, { hasError: boolean }>
-) {
+export class MapErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { hasError: boolean }
+> {
   constructor(props: { children: React.ReactNode }) {
     super(props);
     this.state = { hasError: false };
