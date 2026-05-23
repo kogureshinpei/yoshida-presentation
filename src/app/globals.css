@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #2D6A4F;
+  --color-accent: #74C69D;
+  --color-bg: #F8F4EF;
+  --font-noto: var(--font-noto);
+  --font-shippori: var(--font-shippori);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #F8F4EF;
+}
+
+body {
+  background-color: #F8F4EF;
+  font-family: var(--font-noto), sans-serif;
+}
+
+.font-shippori {
+  font-family: var(--font-shippori), serif;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}

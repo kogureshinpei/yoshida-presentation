@@ -1,0 +1,98 @@
+[
+  {
+    "id": "co-001",
+    "name": "AgriAI株式会社",
+    "category": "AI",
+    "tagline": "AIで農業の勘を数値化する",
+    "description": "独自の画像解析AIにより病害虫の早期発見・収穫量予測を実現。スマートフォン1台で農場全体を管理できます。",
+    "technologies": ["病害虫AI検出", "収穫量予測モデル", "気象データ連携", "ドローン画像解析"],
+    "targetCrops": ["野菜全般", "果樹", "水稲"],
+    "logoColor": "#2D6A4F",
+    "website": "#",
+    "established": 2019
+  },
+  {
+    "id": "co-002",
+    "name": "バイオネクスト",
+    "category": "バイオ",
+    "tagline": "土壌微生物が農業を変える",
+    "description": "独自開発の有益微生物製剤で土壌改良・農薬削減を実現。有機農業への転換を科学的にサポートします。",
+    "technologies": ["土壌微生物製剤", "バイオスティミュラント", "土壌分析サービス", "有機JAS対応"],
+    "targetCrops": ["有機野菜", "果樹", "水稲"],
+    "logoColor": "#52B788",
+    "website": "#",
+    "established": 2015
+  },
+  {
+    "id": "co-003",
+    "name": "SkyFarm Technologies",
+    "category": "ドローン",
+    "tagline": "空から農業を最適化",
+    "description": "農業用ドローンの開発・販売・飛行代行サービスを提供。農薬散布・種まき・生育管理を空中から実施。",
+    "technologies": ["農薬散布ドローン", "生育モニタリング", "自動航行システム", "マルチスペクトルカメラ"],
+    "targetCrops": ["水稲", "麦類", "野菜"],
+    "logoColor": "#1B4332",
+    "website": "#",
+    "established": 2018
+  },
+  {
+    "id": "co-004",
+    "name": "グリーンIoT",
+    "category": "IoT",
+    "tagline": "センサーが農場を見守る",
+    "description": "温度・湿度・土壌水分・日照をリアルタイム計測するIoTセンサーネットワーク。スマホで農場の状態をどこでも確認。",
+    "technologies": ["環境センサーネットワーク", "自動潅水制御", "データ可視化ダッシュボード", "アラート通知"],
+    "targetCrops": ["施設野菜", "果樹", "花卉"],
+    "logoColor": "#40916C",
+    "website": "#",
+    "established": 2017
+  },
+  {
+    "id": "co-005",
+    "name": "アグロファーマシー",
+    "category": "農薬",
+    "tagline": "次世代農薬で持続可能な農業を",
+    "description": "環境負荷を最小化した次世代農薬の開発。生分解性100%の製品ラインで有機農家にも対応。",
+    "technologies": ["生分解性農薬", "フェロモントラップ", "天敵農薬", "精密散布技術"],
+    "targetCrops": ["果樹", "野菜", "水稲"],
+    "logoColor": "#74C69D",
+    "website": "#",
+    "established": 2012
+  },
+  {
+    "id": "co-006",
+    "name": "ロボアグリ",
+    "category": "ロボット",
+    "tagline": "農業ロボットで人手不足を解決",
+    "description": "自律走行型農業ロボットの開発。除草・収穫・運搬作業を自動化し、農家の労働負担を大幅削減。",
+    "technologies": ["自律走行ロボット", "AIカメラ収穫", "除草ロボット", "遠隔監視システム"],
+    "targetCrops": ["イチゴ", "トマト", "きゅうり"],
+    "logoColor": "#1B4332",
+    "website": "#",
+    "established": 2020
+  },
+  {
+    "id": "co-007",
+    "name": "SmartGreen AI",
+    "category": "AI",
+    "tagline": "衛星データで農地を診断する",
+    "description": "衛星画像とAIを組み合わせた広域農地モニタリング。圃場ごとの生育状況を一括把握し、最適な作業計画を自動生成。",
+    "technologies": ["衛星画像解析", "生育ステージ予測", "作業計画AI", "収量マップ生成"],
+    "targetCrops": ["水稲", "麦類", "大豆"],
+    "logoColor": "#52B788",
+    "website": "#",
+    "established": 2021
+  },
+  {
+    "id": "co-008",
+    "name": "BioSoil Lab",
+    "category": "バイオ",
+    "tagline": "腸内フローラから農地フローラへ",
+    "description": "農地の土壌マイクロバイオーム分析から最適な有機資材の処方箋を提案。土づくりを科学的にアプローチ。",
+    "technologies": ["土壌DNA解析", "カスタム有機資材", "マイクロバイオーム改善", "炭素固定促進"],
+    "targetCrops": ["有機野菜", "果樹", "ハーブ"],
+    "logoColor": "#40916C",
+    "website": "#",
+    "established": 2016
+  }
+]

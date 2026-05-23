@@ -1,0 +1,199 @@
+[
+  {
+    "id": "farm-001",
+    "name": "田中農園",
+    "location": "北海道余市郡",
+    "prefecture": "北海道",
+    "crops": ["りんご", "ぶどう"],
+    "description": "創業60年の老舗果樹農園。広大な畑でりんごとぶどうを栽培。収穫期は学生ボランティアとともに賑わいます。",
+    "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "08:00", "endTime": "15:00", "capacity": 5, "filled": 2 },
+      { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "08:00", "endTime": "15:00", "capacity": 5, "filled": 5 },
+      { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "09:00", "endTime": "16:00", "capacity": 4, "filled": 1 },
+      { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "08:00", "endTime": "15:00", "capacity": 5, "filled": 3 },
+      { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "08:00", "endTime": "15:00", "capacity": 5, "filled": 0 },
+      { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "09:00", "endTime": "14:00", "capacity": 8, "filled": 4 }
+    ],
+    "features": ["宿泊施設あり", "交通費支給", "農機具貸出"],
+    "rating": 4.8,
+    "acceptCount": 147,
+    "lat": 43.55,
+    "lng": 140.75
+  },
+  {
+    "id": "farm-002",
+    "name": "山本いちご農家",
+    "location": "栃木県真岡市",
+    "prefecture": "栃木県",
+    "crops": ["いちご"],
+    "description": "ハウス栽培専門のいちご農家。年間を通じてシフト募集中。初心者でも安心して作業できます。",
+    "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "13:00", "capacity": 6, "filled": 4 },
+      { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:00", "endTime": "13:00", "capacity": 6, "filled": 6 },
+      { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "07:00", "endTime": "13:00", "capacity": 6, "filled": 2 },
+      { "date": "2026-06-06", "dayOfWeek": "土", "startTime": "08:00", "endTime": "14:00", "capacity": 10, "filled": 7 }
+    ],
+    "features": ["食事提供", "未経験歓迎", "週1日から可"],
+    "rating": 4.6,
+    "acceptCount": 89,
+    "lat": 36.44,
+    "lng": 140.01
+  },
+  {
+    "id": "farm-003",
+    "name": "GREEN ROOTS 有機農場",
+    "location": "長野県松本市",
+    "prefecture": "長野県",
+    "crops": ["有機野菜", "トマト", "レタス"],
+    "description": "完全無農薬の有機農業を実践。農業の本質を学びたい方に最適な環境です。",
+    "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 1 },
+      { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 3 },
+      { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 0 },
+      { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 2 }
+    ],
+    "features": ["有機農業認定", "収穫物お土産", "農業体験証明書発行"],
+    "rating": 4.9,
+    "acceptCount": 62,
+    "lat": 36.24,
+    "lng": 137.97
+  },
+  {
+    "id": "farm-004",
+    "name": "鈴木水田農家",
+    "location": "新潟県魚沼市",
+    "prefecture": "新潟県",
+    "crops": ["コシヒカリ", "もち米"],
+    "description": "魚沼産コシヒカリの生産農家。田植えから収穫まで通年で体験できます。",
+    "image": "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "17:00", "capacity": 8, "filled": 5 },
+      { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:00", "endTime": "17:00", "capacity": 8, "filled": 8 },
+      { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "07:00", "endTime": "17:00", "capacity": 12, "filled": 3 }
+    ],
+    "features": ["田植え体験", "昼食提供", "温泉近隣"],
+    "rating": 4.7,
+    "acceptCount": 201,
+    "lat": 37.12,
+    "lng": 138.89
+  },
+  {
+    "id": "farm-005",
+    "name": "瀬戸内みかん農園",
+    "location": "愛媛県宇和島市",
+    "prefecture": "愛媛県",
+    "crops": ["みかん", "ポンカン", "伊予柑"],
+    "description": "温暖な気候に恵まれた瀬戸内のみかん農園。段々畑での作業は景色も最高です。",
+    "image": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "08:00", "endTime": "16:00", "capacity": 6, "filled": 2 },
+      { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "08:00", "endTime": "16:00", "capacity": 6, "filled": 4 },
+      { "date": "2026-06-06", "dayOfWeek": "土", "startTime": "08:00", "endTime": "16:00", "capacity": 10, "filled": 6 }
+    ],
+    "features": ["絶景段々畑", "みかん食べ放題", "観光地近隣"],
+    "rating": 4.5,
+    "acceptCount": 78,
+    "lat": 33.22,
+    "lng": 132.55
+  },
+  {
+    "id": "farm-006",
+    "name": "九州野菜ファーム",
+    "location": "熊本県阿蘇市",
+    "prefecture": "熊本県",
+    "crops": ["トマト", "ピーマン", "なす"],
+    "description": "阿蘇の大地で育てる露地野菜農家。スマート農業導入で効率的な作業が可能。",
+    "image": "https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "14:00", "capacity": 10, "filled": 3 },
+      { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:00", "endTime": "14:00", "capacity": 10, "filled": 7 },
+      { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "07:00", "endTime": "14:00", "capacity": 10, "filled": 0 }
+    ],
+    "features": ["スマート農業", "広大な農地", "正規雇用転換実績あり"],
+    "rating": 4.4,
+    "acceptCount": 134,
+    "lat": 32.88,
+    "lng": 131.08
+  },
+  {
+    "id": "farm-007",
+    "name": "東北ブルーベリー農園",
+    "location": "岩手県一関市",
+    "prefecture": "岩手県",
+    "crops": ["ブルーベリー", "ラズベリー"],
+    "description": "自然豊かな東北でベリー類を栽培。摘み取り体験が人気のU・Iターン歓迎農園。",
+    "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "09:00", "endTime": "15:00", "capacity": 8, "filled": 8 },
+      { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "09:00", "endTime": "15:00", "capacity": 8, "filled": 3 },
+      { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "09:00", "endTime": "14:00", "capacity": 15, "filled": 10 }
+    ],
+    "features": ["摘み取り体験", "U・Iターン歓迎", "自然環境"],
+    "rating": 4.6,
+    "acceptCount": 95,
+    "lat": 38.93,
+    "lng": 141.13
+  },
+  {
+    "id": "farm-008",
+    "name": "関西有機野菜の里",
+    "location": "京都府亀岡市",
+    "prefecture": "京都府",
+    "crops": ["京野菜", "万願寺とうがらし", "賀茂なす"],
+    "description": "伝統的な京野菜を有機栽培で守り続ける農家。農業文化も一緒に学べます。",
+    "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:30", "endTime": "13:30", "capacity": 4, "filled": 2 },
+      { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:30", "endTime": "13:30", "capacity": 4, "filled": 4 },
+      { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "07:30", "endTime": "13:30", "capacity": 4, "filled": 1 }
+    ],
+    "features": ["京野菜", "文化体験", "農業観光"],
+    "rating": 4.8,
+    "acceptCount": 56,
+    "lat": 35.01,
+    "lng": 135.57
+  },
+  {
+    "id": "farm-009",
+    "name": "北関東ねぎ農場",
+    "location": "埼玉県深谷市",
+    "prefecture": "埼玉県",
+    "crops": ["深谷ねぎ", "玉ねぎ"],
+    "description": "深谷ねぎで有名な産地の大規模農家。機械化が進んでおり体力的な負担が少ない。",
+    "image": "https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 8 },
+      { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 15 },
+      { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 5 },
+      { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 0 }
+    ],
+    "features": ["機械化農業", "大規模農場", "首都圏からアクセス良好"],
+    "rating": 4.3,
+    "acceptCount": 312,
+    "lat": 36.20,
+    "lng": 139.28
+  },
+  {
+    "id": "farm-010",
+    "name": "沖縄サトウキビ農家",
+    "location": "沖縄県宮古島市",
+    "prefecture": "沖縄県",
+    "crops": ["サトウキビ", "マンゴー", "パイナップル"],
+    "description": "南国の楽園、宮古島でトロピカルフルーツとサトウキビを栽培。リゾート気分で農業体験。",
+    "image": "https://images.unsplash.com/photo-1627483297994-70946fa17f87?w=800&q=80",
+    "shiftSlots": [
+      { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "12:00", "capacity": 6, "filled": 6 },
+      { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:00", "endTime": "12:00", "capacity": 6, "filled": 3 },
+      { "date": "2026-06-06", "dayOfWeek": "土", "startTime": "07:00", "endTime": "12:00", "capacity": 10, "filled": 4 },
+      { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "07:00", "endTime": "12:00", "capacity": 10, "filled": 7 }
+    ],
+    "features": ["南国体験", "宿泊施設完備", "マリンスポーツ近隣"],
+    "rating": 4.9,
+    "acceptCount": 183,
+    "lat": 24.81,
+    "lng": 125.28
+  }
+]
