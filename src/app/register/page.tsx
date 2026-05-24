@@ -1,6 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 type Tab = "student" | "farmer" | "company" | "user";
 
@@ -417,12 +419,19 @@ function SuccessModal({ onClose, savedCrop }: { onClose: () => void; savedCrop?:
   );
 }
 
-/* ── Main page ── */
-export default function RegisterPage() {
-  const [activeTab, setActiveTab] = useState<Tab>("farmer");
+const VALID_TABS: Tab[] = ["farmer", "student", "company", "user"];
+
+/* ── Main page content ── */
+function RegisterContent() {
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get("tab") as Tab | null;
+  const initialTab: Tab = tabParam && VALID_TABS.includes(tabParam) ? tabParam : "farmer";
+
+  const [activeTab, setActiveTab] = useState<Tab>(initialTab);
   const [submitted, setSubmitted] = useState(false);
   const [cropDecided, setCropDecided] = useState<"decided" | "undecided">("undecided");
   const [preferredCrop, setPreferredCrop] = useState("");
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -507,9 +516,35 @@ export default function RegisterPage() {
               {activeTab === "user" && <UserForm />}
 
               <div className="mt-8 pt-6 border-t border-gray-100">
+                <label className="flex items-start gap-3 mb-5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    className="w-4 h-4 mt-0.5 rounded accent-[#2D6A4F] cursor-pointer flex-none"
+                  />
+                  <span className="text-sm text-gray-600">
+                    <Link
+                      href="/terms"
+                      className="text-[#2D6A4F] underline hover:opacity-75 transition-opacity"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      利用規約
+                    </Link>
+                    に同意する
+                  </span>
+                </label>
+
                 <button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-[#2D6A4F] text-white font-bold text-base hover:bg-[#1f5038] transition-all duration-200 hover:shadow-lg active:scale-[0.99]"
+                  disabled={!agreedToTerms}
+                  className={[
+                    "w-full py-4 rounded-xl text-white font-bold text-base transition-all duration-200",
+                    agreedToTerms
+                      ? "bg-[#2D6A4F] hover:bg-[#1f5038] hover:shadow-lg active:scale-[0.99]"
+                      : "bg-gray-300 cursor-not-allowed",
+                  ].join(" ")}
                 >
                   申し込む
                 </button>
@@ -524,5 +559,19 @@ export default function RegisterPage() {
 
       {submitted && <SuccessModal onClose={() => setSubmitted(false)} savedCrop={savedCrop} />}
     </main>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#F8F4EF] flex items-center justify-center">
+          <div className="animate-pulse text-gray-400 text-sm">読み込み中…</div>
+        </div>
+      }
+    >
+      <RegisterContent />
+    </Suspense>
   );
 }

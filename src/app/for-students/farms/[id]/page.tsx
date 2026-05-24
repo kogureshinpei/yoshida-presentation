@@ -17,7 +17,7 @@ const STATUS_STYLE: Record<string, { bg: string; text: string }> = {
 };
 
 type Props = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export function generateStaticParams() {
@@ -57,8 +57,9 @@ const FEATURE_ICONS: Record<string, string> = {
   正規雇用転換実績あり: "💼",
 };
 
-export default function FarmDetailPage({ params }: Props) {
-  const farm = (farmsData as Farm[]).find((f) => f.id === params.id);
+export default async function FarmDetailPage({ params }: Props) {
+  const { id } = await params;
+  const farm = (farmsData as Farm[]).find((f) => f.id === id);
 
   if (!farm) notFound();
 

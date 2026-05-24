@@ -69,6 +69,10 @@ export function StoreMapView({ farms, userLat, userLng, containerClass, selected
           attribution: "© OpenStreetMap contributors",
         }).addTo(map);
 
+        const basePath = process.env.NEXT_PUBLIC_REPO_NAME
+          ? `/${process.env.NEXT_PUBLIC_REPO_NAME}`
+          : "";
+
         markersRef.current = {};
         farms.forEach((farm) => {
           const lat = farm.storeLat ?? farm.lat;
@@ -84,6 +88,30 @@ export function StoreMapView({ farms, userLat, userLng, containerClass, selected
             );
           markersRef.current[farm.id] = marker;
           if (isSelected) marker.openPopup();
+
+          marker.on("dblclick", (e) => {
+            L.DomEvent.stopPropagation(e);
+            const availableSlots = farm.shiftSlots.reduce(
+              (sum, s) => sum + Math.max(0, s.capacity - s.filled),
+              0
+            );
+            const slotsHtml = availableSlots > 0
+              ? `<span style="color:#2D6A4F;font-weight:700">今週${availableSlots}枠空き</span>`
+              : `<span style="color:#9ca3af">今週満席</span>`;
+            const cropsHtml = farm.crops
+              .map(c => `<span style="display:inline-block;background:#d1fae5;color:#065f46;border-radius:12px;padding:2px 8px;font-size:11px;margin:0 3px 3px 0">${c}</span>`)
+              .join("");
+            marker.setPopupContent(
+              `<div style="min-width:220px;font-family:sans-serif;line-height:1.5">
+                <div style="font-size:15px;font-weight:700;color:#111;margin-bottom:4px">${farm.name}</div>
+                <div style="font-size:11px;color:#9ca3af;margin-bottom:8px">${farm.prefecture}・${farm.storeAddress ?? farm.location}</div>
+                <div style="margin-bottom:8px">${cropsHtml}</div>
+                <div style="font-size:12px;color:#4b5563;margin-bottom:6px">${farm.description.slice(0, 90)}${farm.description.length > 90 ? "…" : ""}</div>
+                <div style="font-size:11px;color:#6b7280;margin-bottom:10px">⭐ ${farm.rating.toFixed(1)} · 累計受入${farm.acceptCount}名 · ${slotsHtml}</div>
+                <a href="${basePath}/for-students/farms/${farm.id}/" style="display:block;text-align:center;background:#2D6A4F;color:#fff;border-radius:8px;padding:8px;font-size:12px;font-weight:600;text-decoration:none">詳細ページへ →</a>
+              </div>`
+            ).openPopup();
+          });
         });
 
         if (userLat && userLng) {

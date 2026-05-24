@@ -7,7 +7,7 @@ const STORY_BLOCKS = [
     audience: "農家の方へ",
     title: "自分のやり方を継いでくれる人と、出会う場所",
     body: "農業技術は数年かけて積み上げてきたもの。シフトを登録するだけで、本気で農業を志す就農希望者があなたの農場に集まります。一緒に汗をかきながら、農業の哲学を次の世代に伝えていきましょう。",
-    cta: { label: "農家として登録する", href: "/register" },
+    cta: { label: "農家として登録する", href: "/register?tab=farmer" },
     image: "https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=800&q=80",
     imageAlt: "農場での作業風景",
     reverse: false,
@@ -16,7 +16,7 @@ const STORY_BLOCKS = [
     audience: "就農希望者へ",
     title: "農業を生業にしたい人へ。本物の現場で、技術と覚悟を磨こう",
     body: "農業は「体験」ではなく、人生を賭けた仕事です。全国の農家のもとで実際に手を動かし、土を知り、農家の哲学に触れる。就農への最短距離は、現場にあります。",
-    cta: { label: "農場を探す", href: "/for-students" },
+    cta: { label: "就農希望者として登録する", href: "/register?tab=student" },
     image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
     imageAlt: "畑で作業する人",
     reverse: true,
@@ -25,7 +25,7 @@ const STORY_BLOCKS = [
     audience: "企業の方へ",
     title: "農家と直接つながり、技術を試そう",
     body: "AI・IoT・バイオ・ドローン——最先端のAgTech技術を持つ企業と、現場の農家が直接つながれるプラットフォーム。課題を抱える農家へのアプローチを最短化し、共同開発・実証実験を加速させます。",
-    cta: { label: "AgTech企業を見る", href: "/for-farmers" },
+    cta: { label: "企業として登録する", href: "/register?tab=company" },
     image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
     imageAlt: "農業テクノロジー",
     reverse: false,
@@ -66,24 +66,30 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
-              href="/register"
+              href="/register?tab=farmer"
               className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-white text-[#2D6A4F] font-semibold text-sm hover:bg-[#F8F4EF] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
               農家として登録する
             </Link>
             <Link
-              href="/for-students"
+              href="/register?tab=student"
               className="w-full sm:w-auto px-7 py-3.5 rounded-full border-2 border-white text-white font-semibold text-sm hover:bg-white/15 transition-all duration-200 hover:-translate-y-0.5"
             >
-              就農希望者として探す
+              就農希望者として登録する
             </Link>
             <Link
-              href="/for-farmers"
+              href="/register?tab=company"
               className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#74C69D] text-white font-semibold text-sm hover:bg-[#52B788] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              AgTech企業を見る
+              企業として登録する
             </Link>
           </div>
+          <p className="mt-5 text-white/60 text-xs">
+            既にアカウントをお持ちの方は{" "}
+            <Link href="/login" className="text-white/90 underline hover:text-white transition-colors">
+              こちらからログイン
+            </Link>
+          </p>
         </div>
 
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5">
@@ -153,16 +159,16 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/for-students"
+              href="/register"
               className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-[#2D6A4F] font-semibold text-sm hover:bg-[#F8F4EF] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              農場を探す
+              参加登録
             </Link>
             <Link
-              href="/register"
+              href="/login"
               className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-[#74C69D] text-white font-semibold text-sm hover:bg-[#52B788] transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
             >
-              参加登録
+              ログイン
             </Link>
           </div>
         </div>
