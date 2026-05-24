@@ -69,6 +69,22 @@ export type CompanyDetail = {
   };
 };
 
+export type JobSeeker = {
+  id: string;
+  name: string;
+  age: number;
+  currentJob: string;
+  currentPrefecture: string;
+  targetPrefecture: string;
+  targetCrop: string;
+  cropDecided: boolean;
+  persona: string;
+  skills: string[];
+  availableDays: string;
+  tags: string[];
+  avatar: string;
+};
+
 export type Testimonial = {
   id: string;
   role: "student" | "farmer" | "company";

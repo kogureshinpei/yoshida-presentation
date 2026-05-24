@@ -7,14 +7,14 @@ import { Plant, House, Buildings, NotePencil, Slideshow } from "@phosphor-icons/
 const NAV_LINKS = [
   { href: "/for-farmers", label: "農家の方へ" },
   { href: "/for-students", label: "就農希望者へ" },
-  { href: "/for-farmers#companies", label: "企業の方へ" },
+  { href: "/companies", label: "企業一覧" },
   { href: "/presentation", label: "発表用" },
 ] as const;
 
 const MOBILE_TABS = [
   { href: "/for-farmers", label: "農家", Icon: House },
   { href: "/for-students", label: "就農希望者", Icon: Plant },
-  { href: "/for-farmers#companies", label: "企業", Icon: Buildings },
+  { href: "/companies", label: "企業一覧", Icon: Buildings },
   { href: "/register", label: "登録", Icon: NotePencil },
   { href: "/presentation", label: "発表用", Icon: Slideshow },
 ] as const;
