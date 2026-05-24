@@ -63,13 +63,15 @@ const nextConfig: NextConfig = {
 
 | パス | 種別 | 説明 |
 |---|---|---|
-| `/` | 静的 | ランディングページ（Hero・ストーリーブロック・Testimonials・CTA）|
-| `/for-students` | Client | 農場一覧（グリッド/マップ切替・フィルター） |
+| `/` | 静的 | ランディングページ（Hero・ストーリーブロック・Testimonials・CTA・直売所マップ）|
+| `/top` | Client | 全国直売所マップ（全ピン表示・現在地ボタン）|
+| `/for-students` | Client | 農場一覧（グリッド/マップ切替・都道府県/空き枠フィルター）|
 | `/for-students/farms/[id]` | SSG | 農場詳細（シフトカレンダー・AgTechトライアル一覧）|
-| `/for-farmers` | Client | AgTech企業一覧（カテゴリフィルター・モーダル）|
+| `/for-farmers` | Client | 農家向けページ（AgTech企業タブ + 就農希望者スカウトタブ）|
 | `/for-farmers/companies/[id]` | SSG | 企業詳細（製品・実績・導入事例）|
-| `/register` | Client | 参加登録フォーム（学生/農家/企業の3タブ）|
-| `/presentation` | Client | **発表用デモ**（下記3セクション） |
+| `/companies` | 静的 | 企業一覧（テーブルスタイル・詳細ページリンク）|
+| `/register` | Client | 参加登録フォーム（農家/就農希望者/企業の3タブ・ShiftPicker）|
+| `/presentation` | Client | 発表用デモ（ナビからは非表示・直アクセス可）|
 
 ### `/presentation` の構成（2026-05-24 刷新）
 
@@ -147,7 +149,7 @@ src/components/
 ### カスタムフック
 ```
 src/hooks/
-├── useFarmFilters.ts        # 農場フィルター（prefecture・crop・hasAvailability）
+├── useFarmFilters.ts        # 農場フィルター（prefecture・hasAvailability）※cropは内部stateにあるがUIで非公開
 ├── useFarmFilters.test.ts   # Vitestテスト9件
 └── useCompanyFilters.ts     # 企業フィルター（category・targetCrop）
 ```
@@ -177,8 +179,13 @@ src/hooks/
 - Noto Sans JP: それ以外すべて
 
 ### モバイル対応
-- ナビゲーション: 下部5タブバー（学生・農家・企業・登録・発表用）
+- ナビゲーション: 下部5タブバー（農家 / Top / 就農希望者 / 企業一覧 / 登録）
 - `pb-16 md:pb-0`: モバイルタブバー分のパディング
+
+### ナビゲーション構成（2026-05-24更新）
+- デスクトップ: 農家の方へ / Top / 就農希望者へ / 企業一覧 ＋ 参加登録ボタン
+- 「発表用」はナビから削除（/presentation は直アクセス可）
+- StoreMapViewに`containerClass`プロップ追加（高さをページ側で制御可能）
 
 ---
 
