@@ -8,21 +8,47 @@ type Props = {
   userLat?: number | null;
   userLng?: number | null;
   containerClass?: string;
+  selectedFarmId?: string | null;
 };
 
-export function StoreMapView({ farms, userLat, userLng, containerClass }: Props) {
-  const mapRef = useRef<HTMLDivElement>(null);
-  const mapInstanceRef = useRef<unknown>(null);
+function makeStoreIcon(L: typeof import("leaflet"), selected: boolean) {
+  const size = selected ? 44 : 30;
+  const fontSize = selected ? 18 : 13;
+  const shadow = selected
+    ? "0 0 0 5px rgba(192,57,43,0.25), 0 4px 14px rgba(0,0,0,0.35)"
+    : "0 2px 8px rgba(0,0,0,0.3)";
+  return L.divIcon({
+    className: "",
+    html: `<div style="
+      background:#C0392B;color:white;border-radius:50%;
+      width:${size}px;height:${size}px;display:flex;align-items:center;
+      justify-content:center;font-size:${fontSize}px;
+      box-shadow:${shadow};
+      ${selected ? "border:3px solid white;" : ""}
+      transition:all 0.2s ease;
+    ">🏪</div>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
+    popupAnchor: [0, -(size / 2) - 4],
+  });
+}
 
+export function StoreMapView({ farms, userLat, userLng, containerClass, selectedFarmId }: Props) {
+  const mapRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<import("leaflet").Map | null>(null);
+  const markersRef = useRef<Record<string, import("leaflet").Marker>>({});
+  const lRef = useRef<typeof import("leaflet") | null>(null);
+
+  /* ── Map init / teardown ── */
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
 
-    let L: typeof import("leaflet");
     let map: import("leaflet").Map;
 
     async function initMap() {
       try {
-        L = (await import("leaflet")).default;
+        const L = (await import("leaflet")).default;
+        lRef.current = L;
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -43,28 +69,21 @@ export function StoreMapView({ farms, userLat, userLng, containerClass }: Props)
           attribution: "© OpenStreetMap contributors",
         }).addTo(map);
 
-        const storeIcon = L.divIcon({
-          className: "",
-          html: `<div style="
-            background:#C0392B;color:white;border-radius:50%;
-            width:30px;height:30px;display:flex;align-items:center;
-            justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,0.3);
-          ">🏪</div>`,
-          iconSize: [30, 30],
-          iconAnchor: [15, 15],
-        });
-
+        markersRef.current = {};
         farms.forEach((farm) => {
           const lat = farm.storeLat ?? farm.lat;
           const lng = farm.storeLng ?? farm.lng;
           if (!lat || !lng) return;
-          L.marker([lat, lng], { icon: storeIcon })
+          const isSelected = farm.id === selectedFarmId;
+          const marker = L.marker([lat, lng], { icon: makeStoreIcon(L, isSelected) })
             .addTo(map)
             .bindPopup(
               `<strong>${farm.name}</strong><br>
                ${farm.storeAddress ?? farm.location}<br>
                <span style="color:#2D6A4F;font-size:12px">${farm.crops.join("・")}</span>`
             );
+          markersRef.current[farm.id] = marker;
+          if (isSelected) marker.openPopup();
         });
 
         if (userLat && userLng) {
@@ -84,7 +103,7 @@ export function StoreMapView({ farms, userLat, userLng, containerClass }: Props)
             .bindPopup("現在地");
         }
       } catch {
-        // Leaflet failed — ErrorBoundary handles fallback
+        // Leaflet failed
       }
     }
 
@@ -93,8 +112,28 @@ export function StoreMapView({ farms, userLat, userLng, containerClass }: Props)
     return () => {
       if (map) map.remove();
       mapInstanceRef.current = null;
+      markersRef.current = {};
+      lRef.current = null;
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [farms, userLat, userLng]);
+
+  /* ── Selection highlight (no map reinit) ── */
+  useEffect(() => {
+    const L = lRef.current;
+    const map = mapInstanceRef.current;
+    if (!L || !map) return;
+
+    Object.entries(markersRef.current).forEach(([farmId, marker]) => {
+      marker.setIcon(makeStoreIcon(L, farmId === selectedFarmId));
+    });
+
+    if (selectedFarmId && markersRef.current[selectedFarmId]) {
+      const marker = markersRef.current[selectedFarmId];
+      map.panTo(marker.getLatLng(), { animate: true, duration: 0.4 });
+      marker.openPopup();
+    }
+  }, [selectedFarmId]);
 
   return (
     <>

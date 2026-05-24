@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
-import { MagnifyingGlass, NavigationArrow, X, MapPin } from "@phosphor-icons/react";
+import { MagnifyingGlass, NavigationArrow, X, MapPin, ArrowRight } from "@phosphor-icons/react";
 import Link from "next/link";
 import farmsData from "@/data/farms.json";
 import type { Farm } from "@/types";
@@ -39,6 +39,7 @@ export default function TopPage() {
   const [userLng, setUserLng] = useState<number | null>(null);
   const [locating, setLocating] = useState(false);
   const [geoError, setGeoError] = useState("");
+  const [selectedFarmId, setSelectedFarmId] = useState<string | null>(null);
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -87,6 +88,10 @@ export default function TopPage() {
     );
   };
 
+  const handleSelectFarm = (farmId: string) => {
+    setSelectedFarmId((prev) => (prev === farmId ? null : farmId));
+  };
+
   return (
     <main className="min-h-screen bg-[#F8F4EF]">
       {/* Header */}
@@ -118,14 +123,17 @@ export default function TopPage() {
               <input
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setSelectedFarmId(null);
+                }}
                 placeholder="直売所名・農家名で検索"
                 className="w-full pl-10 pr-9 py-3 rounded-xl border border-gray-200 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/30 focus:border-[#2D6A4F] transition-colors bg-white shadow-sm"
               />
               {query && (
                 <button
                   type="button"
-                  onClick={() => setQuery("")}
+                  onClick={() => { setQuery(""); setSelectedFarmId(null); }}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                   aria-label="検索をクリア"
                 >
@@ -157,10 +165,11 @@ export default function TopPage() {
             <p className="text-xs text-gray-400 px-1">
               {filtered.length} 件
               {userLat ? " · 近い順" : ""}
+              {selectedFarmId ? " · 1件選択中" : ""}
             </p>
 
             {/* Store list */}
-            <ul className="flex flex-col gap-2 overflow-y-auto pr-1" style={{ maxHeight: "calc(100vh - 360px)" }}>
+            <ul className="flex flex-col gap-1.5 overflow-y-auto pr-1" style={{ maxHeight: "calc(100vh - 360px)" }}>
               {filtered.map((farm) => {
                 const lat = farm.storeLat ?? farm.lat;
                 const lng = farm.storeLng ?? farm.lng;
@@ -168,18 +177,34 @@ export default function TopPage() {
                   userLat && userLng && lat && lng
                     ? haversineKm(userLat, userLng, lat, lng).toFixed(0)
                     : null;
+                const isSelected = selectedFarmId === farm.id;
+
                 return (
                   <li key={farm.id}>
-                    <Link
-                      href={`/for-students/farms/${farm.id}`}
-                      className="flex flex-col gap-1 bg-white hover:bg-[#eef5ef] rounded-xl px-4 py-3 border border-gray-100 hover:border-[#2D6A4F]/30 transition-colors group"
+                    <button
+                      type="button"
+                      onClick={() => handleSelectFarm(farm.id)}
+                      className={[
+                        "w-full text-left flex flex-col gap-1 rounded-xl px-4 py-3 border transition-all duration-150",
+                        isSelected
+                          ? "bg-[#2D6A4F]/8 border-[#2D6A4F] shadow-sm ring-1 ring-[#2D6A4F]/15"
+                          : "bg-white hover:bg-[#eef5ef] border-gray-100 hover:border-[#2D6A4F]/30",
+                      ].join(" ")}
                     >
                       <div className="flex items-start justify-between gap-2">
-                        <span className="font-semibold text-sm text-gray-900 leading-snug group-hover:text-[#2D6A4F] transition-colors">
+                        <span
+                          className={[
+                            "font-semibold text-sm leading-snug transition-colors flex items-center gap-1",
+                            isSelected ? "text-[#2D6A4F]" : "text-gray-900",
+                          ].join(" ")}
+                        >
+                          {isSelected && (
+                            <MapPin size={13} weight="fill" className="text-[#C0392B] flex-none" />
+                          )}
                           {farm.name}
                         </span>
                         {dist && (
-                          <span className="text-xs text-[#C0392B] font-semibold whitespace-nowrap">
+                          <span className="text-xs text-[#C0392B] font-semibold whitespace-nowrap flex-none">
                             約{dist}km
                           </span>
                         )}
@@ -188,10 +213,21 @@ export default function TopPage() {
                         <MapPin size={11} className="mt-0.5 flex-none text-gray-400" />
                         <span className="leading-relaxed">{farm.storeAddress ?? farm.location}</span>
                       </div>
-                      <p className="text-xs text-[#2D6A4F] font-medium mt-0.5">
+                      <p className={`text-xs font-medium mt-0.5 ${isSelected ? "text-[#2D6A4F]" : "text-[#2D6A4F]/70"}`}>
                         {farm.crops.join("・")}
                       </p>
-                    </Link>
+                    </button>
+
+                    {/* Detail link — visible when selected */}
+                    {isSelected && (
+                      <Link
+                        href={`/for-students/farms/${farm.id}`}
+                        className="mt-1 flex items-center justify-center gap-1.5 py-2 rounded-lg text-xs font-medium text-[#2D6A4F] hover:bg-[#2D6A4F]/10 transition-colors"
+                      >
+                        詳細ページへ
+                        <ArrowRight size={11} />
+                      </Link>
+                    )}
                   </li>
                 );
               })}
@@ -204,6 +240,7 @@ export default function TopPage() {
               farms={filtered}
               userLat={userLat}
               userLng={userLng}
+              selectedFarmId={selectedFarmId}
               containerClass="w-full h-full rounded-2xl overflow-hidden border border-gray-200 shadow-md"
             />
           </div>
