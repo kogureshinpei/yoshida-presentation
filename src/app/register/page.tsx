@@ -93,8 +93,10 @@ type StudentFormProps = {
 function StudentForm({ cropDecided, onCropDecidedChange, preferredCrop, onPreferredCropChange }: StudentFormProps) {
   return (
     <div className="space-y-5">
-      <InputField label="名前" id="student-name" placeholder="山田 太郎" />
-      <InputField label="メールアドレス" id="student-email" type="email" placeholder="example@email.com" />
+      <div className="grid grid-cols-2 gap-4">
+        <InputField label="名前" id="student-name" placeholder="山田 太郎" />
+        <InputField label="メールアドレス" id="student-email" type="email" placeholder="example@email.com" />
+      </div>
       <InputField label="現在の職業・学校名" id="student-affiliation" placeholder="〇〇大学 / 〇〇株式会社 / 無職" />
       <TextareaField
         label="あなたはどんな人ですか？"
@@ -159,14 +161,16 @@ function StudentForm({ cropDecided, onCropDecidedChange, preferredCrop, onPrefer
 function FarmerForm() {
   return (
     <div className="space-y-5">
-      <InputField label="農家名・農園名" id="farmer-name" placeholder="〇〇農園 / 田中農家" />
-      <SelectField
-        label="都道府県"
-        id="farmer-prefecture"
-        options={PREFECTURES.map((p) => ({ value: p, label: p }))}
-      />
+      <div className="grid grid-cols-2 gap-4">
+        <InputField label="農家名・農園名" id="farmer-name" placeholder="〇〇農園 / 田中農家" />
+        <SelectField
+          label="都道府県"
+          id="farmer-prefecture"
+          options={PREFECTURES.map((p) => ({ value: p, label: p }))}
+        />
+      </div>
       <InputField label="農地の住所" id="farmer-farm-address" placeholder="例: 北海道余市郡余市町黒川町1丁目" />
-      <InputField label="直売所の住所" id="farmer-store-address" placeholder="例: 北海道余市郡余市町港町5丁目（直売所名）" required={false} />
+      <InputField label="直売所の住所（任意）" id="farmer-store-address" placeholder="例: 北海道余市郡余市町港町5丁目（直売所名）" required={false} />
       <InputField label="主な作物" id="farmer-crops" placeholder="例: りんご・ぶどう" />
       <TextareaField
         label="あなたはどんな農家ですか？後継者に伝えたいこと"
@@ -302,7 +306,7 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      <div className="max-w-2xl mx-auto px-4 py-8">
+      <div className="max-w-3xl mx-auto px-6 py-10">
         <div className="bg-white rounded-2xl border border-gray-100 p-1.5 flex gap-1 mb-6 shadow-sm">
           {TABS.map((tab) => (
             <button

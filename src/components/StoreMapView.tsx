@@ -100,7 +100,7 @@ export function StoreMapView({ farms, userLat, userLng }: Props) {
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
       <div
         ref={mapRef}
-        className="w-full h-[420px] rounded-xl overflow-hidden border border-gray-200 shadow-sm"
+        className="w-full h-[580px] rounded-2xl overflow-hidden border border-gray-200 shadow-md"
       />
     </>
   );
