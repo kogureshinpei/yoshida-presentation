@@ -5,7 +5,7 @@
     "location": "北海道余市郡",
     "prefecture": "北海道",
     "crops": ["りんご", "ぶどう"],
-    "description": "創業60年の老舗果樹農園。広大な畑でりんごとぶどうを栽培。収穫期は学生ボランティアとともに賑わいます。",
+    "description": "創業60年の老舗果樹農園。広大な畑でりんごとぶどうを栽培。自分の農業を受け継いでくれる就農希望者を探しています。",
     "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "08:00", "endTime": "15:00", "capacity": 5, "filled": 2 },
@@ -19,7 +19,11 @@
     "rating": 4.8,
     "acceptCount": 147,
     "lat": 43.55,
-    "lng": 140.75
+    "lng": 140.75,
+    "farmAddress": "北海道余市郡余市町黒川町1丁目",
+    "storeAddress": "北海道余市郡余市町港町5丁目（田中農園直売所）",
+    "storeLat": 43.572,
+    "storeLng": 140.769
   },
   {
     "id": "farm-002",
@@ -27,7 +31,7 @@
     "location": "栃木県真岡市",
     "prefecture": "栃木県",
     "crops": ["いちご"],
-    "description": "ハウス栽培専門のいちご農家。年間を通じてシフト募集中。初心者でも安心して作業できます。",
+    "description": "ハウス栽培専門のいちご農家。年間を通じて人手を募集。いちご農業の技術を一から伝えます。",
     "image": "https://images.unsplash.com/photo-1464965911861-746a04b4bca6?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "13:00", "capacity": 6, "filled": 4 },
@@ -35,11 +39,15 @@
       { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "07:00", "endTime": "13:00", "capacity": 6, "filled": 2 },
       { "date": "2026-06-06", "dayOfWeek": "土", "startTime": "08:00", "endTime": "14:00", "capacity": 10, "filled": 7 }
     ],
-    "features": ["食事提供", "未経験歓迎", "週1日から可"],
+    "features": ["食事提供", "未経験歓迎", "後継者歓迎"],
     "rating": 4.6,
     "acceptCount": 89,
     "lat": 36.44,
-    "lng": 140.01
+    "lng": 140.01,
+    "farmAddress": "栃木県真岡市田町2丁目",
+    "storeAddress": "栃木県真岡市荒町1丁目（山本いちご直売所）",
+    "storeLat": 36.441,
+    "storeLng": 140.018
   },
   {
     "id": "farm-003",
@@ -47,7 +55,7 @@
     "location": "長野県松本市",
     "prefecture": "長野県",
     "crops": ["有機野菜", "トマト", "レタス"],
-    "description": "完全無農薬の有機農業を実践。農業の本質を学びたい方に最適な環境です。",
+    "description": "完全無農薬の有機農業を実践。農業の本質を学び、自分の農場を持ちたい方に最適な環境です。",
     "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 1 },
@@ -55,11 +63,15 @@
       { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 0 },
       { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "06:00", "endTime": "12:00", "capacity": 3, "filled": 2 }
     ],
-    "features": ["有機農業認定", "収穫物お土産", "農業体験証明書発行"],
+    "features": ["有機農業認定", "収穫物お土産", "独立支援あり"],
     "rating": 4.9,
     "acceptCount": 62,
     "lat": 36.24,
-    "lng": 137.97
+    "lng": 137.97,
+    "farmAddress": "長野県松本市波田上波田4922",
+    "storeAddress": "長野県松本市波田7698（GREEN ROOTS 農産物直売センター）",
+    "storeLat": 36.248,
+    "storeLng": 137.975
   },
   {
     "id": "farm-004",
@@ -67,18 +79,22 @@
     "location": "新潟県魚沼市",
     "prefecture": "新潟県",
     "crops": ["コシヒカリ", "もち米"],
-    "description": "魚沼産コシヒカリの生産農家。田植えから収穫まで通年で体験できます。",
+    "description": "魚沼産コシヒカリの生産農家。田植えから収穫まで通年で技術を習得できます。",
     "image": "https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "17:00", "capacity": 8, "filled": 5 },
       { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:00", "endTime": "17:00", "capacity": 8, "filled": 8 },
       { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "07:00", "endTime": "17:00", "capacity": 12, "filled": 3 }
     ],
-    "features": ["田植え体験", "昼食提供", "温泉近隣"],
+    "features": ["田植え技術習得", "昼食提供", "後継者募集中"],
     "rating": 4.7,
     "acceptCount": 201,
     "lat": 37.12,
-    "lng": 138.89
+    "lng": 138.89,
+    "farmAddress": "新潟県魚沼市大栗山1034",
+    "storeAddress": "新潟県魚沼市大栗山3022（雪国百貨直売所）",
+    "storeLat": 37.128,
+    "storeLng": 138.896
   },
   {
     "id": "farm-005",
@@ -86,18 +102,22 @@
     "location": "愛媛県宇和島市",
     "prefecture": "愛媛県",
     "crops": ["みかん", "ポンカン", "伊予柑"],
-    "description": "温暖な気候に恵まれた瀬戸内のみかん農園。段々畑での作業は景色も最高です。",
+    "description": "温暖な気候に恵まれた瀬戸内のみかん農園。段々畑の景色とともに、果樹農業の技術を伝授します。",
     "image": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "08:00", "endTime": "16:00", "capacity": 6, "filled": 2 },
       { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "08:00", "endTime": "16:00", "capacity": 6, "filled": 4 },
       { "date": "2026-06-06", "dayOfWeek": "土", "startTime": "08:00", "endTime": "16:00", "capacity": 10, "filled": 6 }
     ],
-    "features": ["絶景段々畑", "みかん食べ放題", "観光地近隣"],
+    "features": ["絶景段々畑", "みかん食べ放題", "就農相談可"],
     "rating": 4.5,
     "acceptCount": 78,
     "lat": 33.22,
-    "lng": 132.55
+    "lng": 132.55,
+    "farmAddress": "愛媛県宇和島市三間町黒井地456",
+    "storeAddress": "愛媛県宇和島市本町通4丁目（瀬戸内みかん市場）",
+    "storeLat": 33.229,
+    "storeLng": 132.558
   },
   {
     "id": "farm-006",
@@ -105,18 +125,22 @@
     "location": "熊本県阿蘇市",
     "prefecture": "熊本県",
     "crops": ["トマト", "ピーマン", "なす"],
-    "description": "阿蘇の大地で育てる露地野菜農家。スマート農業導入で効率的な作業が可能。",
+    "description": "阿蘇の大地で育てる露地野菜農家。スマート農業を導入しており、正規就農へのステップを踏める環境です。",
     "image": "https://images.unsplash.com/photo-1592419044706-39796d40f98c?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "14:00", "capacity": 10, "filled": 3 },
       { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:00", "endTime": "14:00", "capacity": 10, "filled": 7 },
       { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "07:00", "endTime": "14:00", "capacity": 10, "filled": 0 }
     ],
-    "features": ["スマート農業", "広大な農地", "正規雇用転換実績あり"],
+    "features": ["スマート農業", "広大な農地", "正規就農転換実績あり"],
     "rating": 4.4,
     "acceptCount": 134,
     "lat": 32.88,
-    "lng": 131.08
+    "lng": 131.08,
+    "farmAddress": "熊本県阿蘇市乙姫1234",
+    "storeAddress": "熊本県阿蘇市内牧364（阿蘇農産物直売所）",
+    "storeLat": 32.888,
+    "storeLng": 131.074
   },
   {
     "id": "farm-007",
@@ -124,18 +148,22 @@
     "location": "岩手県一関市",
     "prefecture": "岩手県",
     "crops": ["ブルーベリー", "ラズベリー"],
-    "description": "自然豊かな東北でベリー類を栽培。摘み取り体験が人気のU・Iターン歓迎農園。",
+    "description": "自然豊かな東北でベリー類を栽培。U・Iターン歓迎。農業で生計を立てたい方の受け入れ実績があります。",
     "image": "https://images.unsplash.com/photo-1498557850523-fd3d118b962e?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-02", "dayOfWeek": "火", "startTime": "09:00", "endTime": "15:00", "capacity": 8, "filled": 8 },
       { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "09:00", "endTime": "15:00", "capacity": 8, "filled": 3 },
       { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "09:00", "endTime": "14:00", "capacity": 15, "filled": 10 }
     ],
-    "features": ["摘み取り体験", "U・Iターン歓迎", "自然環境"],
+    "features": ["摘み取り技術習得", "U・Iターン歓迎", "独立支援あり"],
     "rating": 4.6,
     "acceptCount": 95,
     "lat": 38.93,
-    "lng": 141.13
+    "lng": 141.13,
+    "farmAddress": "岩手県一関市花泉町油島油島原356",
+    "storeAddress": "岩手県一関市山目字鬼越50（一関農産物直売館）",
+    "storeLat": 38.935,
+    "storeLng": 141.138
   },
   {
     "id": "farm-008",
@@ -143,18 +171,22 @@
     "location": "京都府亀岡市",
     "prefecture": "京都府",
     "crops": ["京野菜", "万願寺とうがらし", "賀茂なす"],
-    "description": "伝統的な京野菜を有機栽培で守り続ける農家。農業文化も一緒に学べます。",
+    "description": "伝統的な京野菜を有機栽培で守り続ける農家。農業文化の継承者を募集しています。",
     "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:30", "endTime": "13:30", "capacity": 4, "filled": 2 },
       { "date": "2026-06-03", "dayOfWeek": "水", "startTime": "07:30", "endTime": "13:30", "capacity": 4, "filled": 4 },
       { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "07:30", "endTime": "13:30", "capacity": 4, "filled": 1 }
     ],
-    "features": ["京野菜", "文化体験", "農業観光"],
+    "features": ["京野菜の技術継承", "文化体験", "後継者募集中"],
     "rating": 4.8,
     "acceptCount": 56,
     "lat": 35.01,
-    "lng": 135.57
+    "lng": 135.57,
+    "farmAddress": "京都府亀岡市旭町前田1番地",
+    "storeAddress": "京都府亀岡市余部町友を10（亀岡農業公園直売所）",
+    "storeLat": 35.012,
+    "storeLng": 135.563
   },
   {
     "id": "farm-009",
@@ -162,7 +194,7 @@
     "location": "埼玉県深谷市",
     "prefecture": "埼玉県",
     "crops": ["深谷ねぎ", "玉ねぎ"],
-    "description": "深谷ねぎで有名な産地の大規模農家。機械化が進んでおり体力的な負担が少ない。",
+    "description": "深谷ねぎで有名な産地の大規模農家。機械化が進んでおり、効率的な農業経営を学べます。",
     "image": "https://images.unsplash.com/photo-1484557985045-edf25e08da73?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 8 },
@@ -170,11 +202,15 @@
       { "date": "2026-06-04", "dayOfWeek": "木", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 5 },
       { "date": "2026-06-05", "dayOfWeek": "金", "startTime": "08:00", "endTime": "16:00", "capacity": 15, "filled": 0 }
     ],
-    "features": ["機械化農業", "大規模農場", "首都圏からアクセス良好"],
+    "features": ["機械化農業の習得", "大規模農場", "首都圏からアクセス良好"],
     "rating": 4.3,
     "acceptCount": 312,
     "lat": 36.20,
-    "lng": 139.28
+    "lng": 139.28,
+    "farmAddress": "埼玉県深谷市小前田1672",
+    "storeAddress": "埼玉県深谷市国済寺560（ふかや農産物直売センター）",
+    "storeLat": 36.197,
+    "storeLng": 139.288
   },
   {
     "id": "farm-010",
@@ -182,7 +218,7 @@
     "location": "沖縄県宮古島市",
     "prefecture": "沖縄県",
     "crops": ["サトウキビ", "マンゴー", "パイナップル"],
-    "description": "南国の楽園、宮古島でトロピカルフルーツとサトウキビを栽培。リゾート気分で農業体験。",
+    "description": "南国の楽園、宮古島でトロピカルフルーツとサトウキビを栽培。島の農業を継いでくれる人を求めています。",
     "image": "https://images.unsplash.com/photo-1627483297994-70946fa17f87?w=800&q=80",
     "shiftSlots": [
       { "date": "2026-06-01", "dayOfWeek": "月", "startTime": "07:00", "endTime": "12:00", "capacity": 6, "filled": 6 },
@@ -190,10 +226,14 @@
       { "date": "2026-06-06", "dayOfWeek": "土", "startTime": "07:00", "endTime": "12:00", "capacity": 10, "filled": 4 },
       { "date": "2026-06-07", "dayOfWeek": "日", "startTime": "07:00", "endTime": "12:00", "capacity": 10, "filled": 7 }
     ],
-    "features": ["南国体験", "宿泊施設完備", "マリンスポーツ近隣"],
+    "features": ["南国農業体験", "宿泊施設完備", "島への移住支援あり"],
     "rating": 4.9,
     "acceptCount": 183,
     "lat": 24.81,
-    "lng": 125.28
+    "lng": 125.28,
+    "farmAddress": "沖縄県宮古島市上野宮国410",
+    "storeAddress": "沖縄県宮古島市平良字下里1（宮古島産直市場）",
+    "storeLat": 24.818,
+    "storeLng": 125.282
   }
 ]

@@ -13,8 +13,11 @@ const DEFAULT_FILTERS: FarmFilters = {
   hasAvailability: false,
 };
 
-export function useFarmFilters(farms: Farm[]) {
-  const [filters, setFilters] = useState<FarmFilters>(DEFAULT_FILTERS);
+export function useFarmFilters(farms: Farm[], initialCrop = "") {
+  const [filters, setFilters] = useState<FarmFilters>({
+    ...DEFAULT_FILTERS,
+    crop: initialCrop,
+  });
 
   const filteredFarms = useMemo(() => {
     return farms.filter((farm) => {

@@ -19,6 +19,12 @@ export type Farm = {
   features: string[];
   rating: number;
   acceptCount: number;
+  lat?: number;
+  lng?: number;
+  farmAddress?: string;
+  storeAddress?: string;
+  storeLat?: number;
+  storeLng?: number;
 };
 
 export type Company = {

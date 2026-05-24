@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import farmsData from "@/data/farms.json";
 import type { Farm } from "@/types";
 import { useFarmFilters } from "@/hooks/useFarmFilters";
@@ -13,8 +13,21 @@ type ViewMode = "grid" | "map";
 
 export default function ForStudentsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
+  const [initialCrop, setInitialCrop] = useState("");
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("ggf_preferred_crop") ?? "";
+      setInitialCrop(saved);
+    } catch {
+      // localStorage unavailable
+    }
+    setHydrated(true);
+  }, []);
+
   const { filters, filteredFarms, prefectures, allCrops, updateFilter, resetFilters } =
-    useFarmFilters(farmsData as Farm[]);
+    useFarmFilters(farmsData as Farm[], hydrated ? initialCrop : "");
 
   return (
     <main className="min-h-screen bg-[#F8F4EF]">
@@ -22,7 +35,7 @@ export default function ForStudentsPage() {
       <div className="bg-[#2D6A4F] pt-10 pb-12 px-4">
         <div className="max-w-6xl mx-auto">
           <span className="inline-block text-[#74C69D] text-sm font-semibold tracking-wide uppercase mb-2">
-            学生・社会人の方へ
+            就農希望者の方へ
           </span>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
             <div>
@@ -30,8 +43,13 @@ export default function ForStudentsPage() {
                 農家を探す
               </h1>
               <p className="text-white/75 text-sm md:text-base">
-                全国{farmsData.length}件の農場から、あなたに合ったシフトを見つけよう
+                全国{farmsData.length}件の農場から、技術を学べる農家を見つけよう
               </p>
+              {hydrated && initialCrop && (
+                <p className="text-[#74C69D] text-xs mt-1">
+                  ✓ 登録時の希望作物「{initialCrop}」で絞り込み中
+                </p>
+              )}
             </div>
 
             {/* View mode toggle */}
@@ -78,7 +96,6 @@ export default function ForStudentsPage() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
-        {/* Filter bar */}
         <FilterBar
           filters={filters}
           prefectures={prefectures}
@@ -87,14 +104,12 @@ export default function ForStudentsPage() {
           resetFilters={resetFilters}
         />
 
-        {/* Result count */}
         {viewMode === "grid" && (
           <p className="text-sm text-gray-500">
             <span className="font-semibold text-[#2D6A4F]">{filteredFarms.length}</span> 件の農場が見つかりました
           </p>
         )}
 
-        {/* Content */}
         {viewMode === "grid" ? (
           filteredFarms.length === 0 ? (
             <EmptyState
