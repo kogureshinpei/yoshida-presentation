@@ -6,7 +6,6 @@ import type { FarmFilters } from "@/hooks/useFarmFilters";
 type Props = {
   filters: FarmFilters;
   prefectures: string[];
-  allCrops: string[];
   updateFilter: <K extends keyof FarmFilters>(key: K, value: FarmFilters[K]) => void;
   resetFilters: () => void;
 };
@@ -14,13 +13,11 @@ type Props = {
 export default function FilterBar({
   filters,
   prefectures,
-  allCrops,
   updateFilter,
   resetFilters,
 }: Props) {
   const isAnyFilterActive =
     filters.prefecture !== "" ||
-    filters.crop !== "" ||
     filters.hasAvailability;
 
   const filterContent = (
@@ -43,29 +40,6 @@ export default function FilterBar({
           {prefectures.map((pref) => (
             <option key={pref} value={pref}>
               {pref}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Crop select */}
-      <div className="flex-1 min-w-0">
-        <label
-          htmlFor="filter-crop"
-          className="block text-xs font-medium text-gray-500 mb-1 md:sr-only"
-        >
-          作物
-        </label>
-        <select
-          id="filter-crop"
-          value={filters.crop}
-          onChange={(e) => updateFilter("crop", e.target.value)}
-          className="w-full md:w-auto px-3 py-2 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/30 focus:border-[#2D6A4F] transition-colors duration-150 cursor-pointer"
-        >
-          <option value="">すべての作物</option>
-          {allCrops.map((crop) => (
-            <option key={crop} value={crop}>
-              {crop}
             </option>
           ))}
         </select>
@@ -117,7 +91,7 @@ export default function FilterBar({
           <span className="text-sm font-semibold text-gray-700">絞り込み</span>
           {isAnyFilterActive && (
             <span className="ml-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#2D6A4F] text-white text-[10px] font-bold">
-              {[filters.prefecture, filters.crop, filters.hasAvailability ? "1" : ""].filter(Boolean).length}
+              {[filters.prefecture, filters.hasAvailability ? "1" : ""].filter(Boolean).length}
             </span>
           )}
         </div>
@@ -132,7 +106,7 @@ export default function FilterBar({
             <span className="text-sm font-semibold text-gray-700">絞り込み</span>
             {isAnyFilterActive && (
               <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-[#2D6A4F] text-white text-[10px] font-bold">
-                {[filters.prefecture, filters.crop, filters.hasAvailability ? "1" : ""].filter(Boolean).length}
+                {[filters.prefecture, filters.hasAvailability ? "1" : ""].filter(Boolean).length}
               </span>
             )}
           </div>

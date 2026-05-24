@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import farmsData from "@/data/farms.json";
 import type { Farm } from "@/types";
 import { useFarmFilters } from "@/hooks/useFarmFilters";
@@ -13,21 +13,9 @@ type ViewMode = "grid" | "map";
 
 export default function ForStudentsPage() {
   const [viewMode, setViewMode] = useState<ViewMode>("grid");
-  const [initialCrop, setInitialCrop] = useState("");
-  const [hydrated, setHydrated] = useState(false);
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("ggf_preferred_crop") ?? "";
-      setInitialCrop(saved);
-    } catch {
-      // localStorage unavailable
-    }
-    setHydrated(true);
-  }, []);
-
-  const { filters, filteredFarms, prefectures, allCrops, updateFilter, resetFilters } =
-    useFarmFilters(farmsData as Farm[], hydrated ? initialCrop : "");
+  const { filters, filteredFarms, prefectures, updateFilter, resetFilters } =
+    useFarmFilters(farmsData as Farm[], "");
 
   return (
     <main className="min-h-screen bg-[#F8F4EF]">
@@ -45,12 +33,7 @@ export default function ForStudentsPage() {
               <p className="text-white/75 text-sm md:text-base">
                 全国{farmsData.length}件の農場から、技術を学べる農家を見つけよう
               </p>
-              {hydrated && initialCrop && (
-                <p className="text-[#74C69D] text-xs mt-1">
-                  ✓ 登録時の希望作物「{initialCrop}」で絞り込み中
-                </p>
-              )}
-            </div>
+              </div>
 
             {/* View mode toggle */}
             <div className="flex items-center gap-1 bg-white/15 rounded-xl p-1 self-start md:self-auto">
@@ -99,7 +82,6 @@ export default function ForStudentsPage() {
         <FilterBar
           filters={filters}
           prefectures={prefectures}
-          allCrops={allCrops}
           updateFilter={updateFilter}
           resetFilters={resetFilters}
         />

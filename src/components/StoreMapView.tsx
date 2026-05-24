@@ -7,9 +7,10 @@ type Props = {
   farms: Farm[];
   userLat?: number | null;
   userLng?: number | null;
+  containerClass?: string;
 };
 
-export function StoreMapView({ farms, userLat, userLng }: Props) {
+export function StoreMapView({ farms, userLat, userLng, containerClass }: Props) {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<unknown>(null);
 
@@ -100,7 +101,7 @@ export function StoreMapView({ farms, userLat, userLng }: Props) {
       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
       <div
         ref={mapRef}
-        className="w-full h-[580px] rounded-2xl overflow-hidden border border-gray-200 shadow-md"
+        className={containerClass ?? "w-full h-[580px] rounded-2xl overflow-hidden border border-gray-200 shadow-md"}
       />
     </>
   );

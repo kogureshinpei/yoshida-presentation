@@ -2,21 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Plant, House, Buildings, NotePencil, Slideshow } from "@phosphor-icons/react";
+import { Plant, House, Buildings, NotePencil, MapTrifold } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
   { href: "/for-farmers", label: "農家の方へ" },
+  { href: "/top", label: "Top" },
   { href: "/for-students", label: "就農希望者へ" },
   { href: "/companies", label: "企業一覧" },
-  { href: "/presentation", label: "発表用" },
 ] as const;
 
 const MOBILE_TABS = [
   { href: "/for-farmers", label: "農家", Icon: House },
+  { href: "/top", label: "Top", Icon: MapTrifold },
   { href: "/for-students", label: "就農希望者", Icon: Plant },
   { href: "/companies", label: "企業一覧", Icon: Buildings },
   { href: "/register", label: "登録", Icon: NotePencil },
-  { href: "/presentation", label: "発表用", Icon: Slideshow },
 ] as const;
 
 export default function Navigation() {
