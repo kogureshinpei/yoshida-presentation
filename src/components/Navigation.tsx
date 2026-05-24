@@ -1,26 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Plant, House, Buildings, NotePencil, MapTrifold } from "@phosphor-icons/react";
+import { Plant, House, Buildings, NotePencil, MapTrifold, UserCircle } from "@phosphor-icons/react";
+import { ProfilePanel, type PanelType } from "./ProfilePanel";
 
-const NAV_LINKS = [
+type NavLink = {
+  href: string;
+  label: string;
+  profileType?: PanelType;
+};
+
+const NAV_LINKS: NavLink[] = [
   { href: "/top", label: "Top" },
-  { href: "/for-farmers", label: "農家の方へ" },
-  { href: "/for-students", label: "就農希望者へ" },
+  { href: "/for-farmers", label: "農家の方へ", profileType: "farmer" },
+  { href: "/for-students", label: "就農希望者へ", profileType: "student" },
   { href: "/companies", label: "企業一覧" },
-] as const;
+];
 
 const MOBILE_TABS = [
   { href: "/top", label: "Top", Icon: MapTrifold },
-  { href: "/for-farmers", label: "農家", Icon: House },
-  { href: "/for-students", label: "就農希望者", Icon: Plant },
+  { href: "/for-farmers", label: "農家", Icon: House, profileType: "farmer" as PanelType },
+  { href: "/for-students", label: "就農希望者", Icon: Plant, profileType: "student" as PanelType },
   { href: "/companies", label: "企業一覧", Icon: Buildings },
   { href: "/register", label: "登録", Icon: NotePencil },
 ] as const;
 
 export default function Navigation() {
   const pathname = usePathname();
+  const [openPanel, setOpenPanel] = useState<PanelType | null>(null);
 
   const isActive = (href: string) => {
     const path = href.split("#")[0];
@@ -42,22 +51,34 @@ export default function Navigation() {
           </Link>
 
           {/* Nav links + CTA */}
-          <div className="flex items-center gap-7">
-            {NAV_LINKS.map(({ href, label }) => {
+          <div className="flex items-center gap-6">
+            {NAV_LINKS.map(({ href, label, profileType }) => {
               const active = isActive(href);
               return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={[
-                    "text-sm font-medium pb-0.5 transition-colors duration-200",
-                    active
-                      ? "text-[#2D6A4F] border-b-2 border-[#C0392B]"
-                      : "text-gray-600 hover:text-[#2D6A4F]",
-                  ].join(" ")}
-                >
-                  {label}
-                </Link>
+                <span key={href} className="flex items-center gap-1">
+                  <Link
+                    href={href}
+                    className={[
+                      "text-sm font-medium pb-0.5 transition-colors duration-200",
+                      active
+                        ? "text-[#2D6A4F] border-b-2 border-[#C0392B]"
+                        : "text-gray-600 hover:text-[#2D6A4F]",
+                    ].join(" ")}
+                  >
+                    {label}
+                  </Link>
+                  {profileType && (
+                    <button
+                      type="button"
+                      onClick={() => setOpenPanel(profileType)}
+                      className="text-gray-400 hover:text-[#2D6A4F] transition-colors rounded-full hover:bg-[#2D6A4F]/8 p-0.5"
+                      aria-label={`${label}プロフィール`}
+                      title="プロフィール・メッセージ"
+                    >
+                      <UserCircle size={17} weight="fill" />
+                    </button>
+                  )}
+                </span>
               );
             })}
             <Link
@@ -73,24 +94,35 @@ export default function Navigation() {
       {/* Mobile bottom tab bar */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 safe-area-inset-bottom">
         <div className="grid grid-cols-5 h-16">
-          {MOBILE_TABS.map(({ href, label, Icon }) => {
+          {MOBILE_TABS.map(({ href, label, Icon, ...rest }) => {
+            const profileType = (rest as { profileType?: PanelType }).profileType;
             const active = isActive(href);
             return (
-              <Link
-                key={href}
-                href={href}
-                className={[
-                  "relative flex flex-col items-center justify-center gap-0.5 transition-colors duration-200",
-                  active ? "text-[#2D6A4F]" : "text-gray-400 hover:text-[#74C69D]",
-                ].join(" ")}
-              >
-                {/* Red active indicator bar */}
-                {active && (
-                  <span className="absolute top-0 left-2 right-2 h-[2px] rounded-b-full bg-[#C0392B]" />
+              <div key={href} className="relative flex flex-col items-center justify-center">
+                <Link
+                  href={href}
+                  className={[
+                    "relative flex flex-col items-center justify-center gap-0.5 w-full h-full transition-colors duration-200",
+                    active ? "text-[#2D6A4F]" : "text-gray-400 hover:text-[#74C69D]",
+                  ].join(" ")}
+                >
+                  {active && (
+                    <span className="absolute top-0 left-2 right-2 h-[2px] rounded-b-full bg-[#C0392B]" />
+                  )}
+                  <Icon size={20} weight={active ? "fill" : "regular"} />
+                  <span className="text-[9px] font-medium leading-none">{label}</span>
+                </Link>
+                {profileType && (
+                  <button
+                    type="button"
+                    onClick={() => setOpenPanel(profileType)}
+                    className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#2D6A4F]/15 flex items-center justify-center"
+                    aria-label="プロフィール"
+                  >
+                    <UserCircle size={10} weight="fill" className="text-[#2D6A4F]" />
+                  </button>
                 )}
-                <Icon size={20} weight={active ? "fill" : "regular"} />
-                <span className="text-[9px] font-medium leading-none">{label}</span>
-              </Link>
+              </div>
             );
           })}
         </div>
@@ -98,6 +130,11 @@ export default function Navigation() {
 
       {/* Spacer for desktop fixed header */}
       <div className="hidden md:block h-16" />
+
+      {/* Profile panel */}
+      {openPanel && (
+        <ProfilePanel type={openPanel} onClose={() => setOpenPanel(null)} />
+      )}
     </>
   );
 }

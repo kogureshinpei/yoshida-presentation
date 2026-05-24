@@ -9,6 +9,7 @@ import { useCompanyFilters } from "@/hooks/useCompanyFilters";
 import CompanyCard from "@/components/CompanyCard";
 import EmptyState from "@/components/EmptyState";
 import { MagnifyingGlass, X, MapPin, Briefcase, Plant, ArrowRight } from "@phosphor-icons/react";
+import { ScoutModal } from "@/components/ScoutModal";
 
 type PageTab = "agtech" | "seekers";
 
@@ -17,6 +18,7 @@ const CATEGORY_ORDER: Company["category"][] = ["AI", "バイオ", "農薬", "IoT
 /* ── Job Seeker card ── */
 function SeekerCard({ seeker }: { seeker: JobSeeker }) {
   const [open, setOpen] = useState(false);
+  const [scoutOpen, setScoutOpen] = useState(false);
 
   return (
     <>
@@ -79,15 +81,24 @@ function SeekerCard({ seeker }: { seeker: JobSeeker }) {
           >
             詳細を見る
           </button>
-          <a
-            href="/register"
-            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#2D6A4F] text-white text-sm font-medium hover:bg-[#1f5038] transition-colors"
+          <button
+            type="button"
+            onClick={() => setScoutOpen(true)}
+            className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#C0392B] text-white text-sm font-medium hover:bg-[#a93226] transition-colors"
           >
             スカウト
             <ArrowRight size={14} />
-          </a>
+          </button>
         </div>
       </div>
+
+      {scoutOpen && (
+        <ScoutModal
+          seekerName={seeker.name}
+          seekerAge={seeker.age}
+          onClose={() => setScoutOpen(false)}
+        />
+      )}
 
       {/* Detail modal */}
       {open && (
@@ -167,12 +178,13 @@ function SeekerCard({ seeker }: { seeker: JobSeeker }) {
               >
                 閉じる
               </button>
-              <a
-                href="/register"
-                className="flex-1 py-3 rounded-xl bg-[#2D6A4F] text-white text-sm font-semibold text-center hover:bg-[#1f5038] transition-colors"
+              <button
+                type="button"
+                onClick={() => { setOpen(false); setScoutOpen(true); }}
+                className="flex-1 py-3 rounded-xl bg-[#C0392B] text-white text-sm font-semibold hover:bg-[#a93226] transition-colors"
               >
                 スカウトする
-              </a>
+              </button>
             </div>
           </div>
         </div>
