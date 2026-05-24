@@ -21,6 +21,118 @@ const PREFECTURES = [
   "福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県",
 ];
 
+const DAYS = ["月", "火", "水", "木", "金", "土", "日"] as const;
+type Day = typeof DAYS[number];
+
+const TIME_OPTIONS: string[] = [];
+for (let h = 5; h <= 20; h++) {
+  TIME_OPTIONS.push(`${String(h).padStart(2, "0")}:00`);
+  if (h < 20) TIME_OPTIONS.push(`${String(h).padStart(2, "0")}:30`);
+}
+
+type ShiftDay = { enabled: boolean; start: string; end: string };
+type ShiftState = Record<Day, ShiftDay>;
+
+const DEFAULT_SHIFT: ShiftState = Object.fromEntries(
+  DAYS.map((d) => [d, { enabled: false, start: "08:00", end: "15:00" }])
+) as ShiftState;
+
+/* ── Shift picker ── */
+function ShiftPicker({ label }: { label: string }) {
+  const [shifts, setShifts] = useState<ShiftState>(DEFAULT_SHIFT);
+
+  const toggle = (day: Day) =>
+    setShifts((prev) => ({ ...prev, [day]: { ...prev[day], enabled: !prev[day].enabled } }));
+
+  const setTime = (day: Day, key: "start" | "end", val: string) =>
+    setShifts((prev) => ({ ...prev, [day]: { ...prev[day], [key]: val } }));
+
+  const enabledCount = DAYS.filter((d) => shifts[d].enabled).length;
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <label className="block text-sm font-medium text-gray-700">
+          {label} <span className="text-red-500">*</span>
+        </label>
+        {enabledCount > 0 && (
+          <span className="text-xs text-[#2D6A4F] font-medium">{enabledCount}日選択中</span>
+        )}
+      </div>
+
+      <div className="rounded-xl border border-gray-200 bg-white overflow-hidden divide-y divide-gray-100">
+        {DAYS.map((day) => {
+          const s = shifts[day];
+          const isWeekend = day === "土" || day === "日";
+          return (
+            <div
+              key={day}
+              className={[
+                "flex items-center gap-3 px-4 py-3 transition-colors",
+                s.enabled ? "bg-[#2D6A4F]/5" : "hover:bg-gray-50",
+              ].join(" ")}
+            >
+              {/* Checkbox */}
+              <label className="flex items-center gap-2.5 cursor-pointer select-none flex-none">
+                <input
+                  type="checkbox"
+                  checked={s.enabled}
+                  onChange={() => toggle(day)}
+                  className="w-4 h-4 rounded accent-[#2D6A4F] cursor-pointer"
+                />
+                <span
+                  className={[
+                    "text-sm font-semibold w-8",
+                    s.enabled
+                      ? "text-[#2D6A4F]"
+                      : isWeekend
+                      ? "text-[#C0392B]"
+                      : "text-gray-500",
+                  ].join(" ")}
+                >
+                  {day}曜
+                </span>
+              </label>
+
+              {/* Time selectors */}
+              {s.enabled ? (
+                <div className="flex items-center gap-2 flex-1">
+                  <select
+                    value={s.start}
+                    onChange={(e) => setTime(day, "start", e.target.value)}
+                    className="flex-1 px-3 py-1.5 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/30 focus:border-[#2D6A4F] bg-white cursor-pointer"
+                  >
+                    {TIME_OPTIONS.map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
+                  <span className="text-gray-400 text-sm flex-none">〜</span>
+                  <select
+                    value={s.end}
+                    onChange={(e) => setTime(day, "end", e.target.value)}
+                    className="flex-1 px-3 py-1.5 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/30 focus:border-[#2D6A4F] bg-white cursor-pointer"
+                  >
+                    {TIME_OPTIONS.filter((t) => t > s.start).map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
+                </div>
+              ) : (
+                <span className="text-xs text-gray-300 flex-1">クリックして選択</span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {enabledCount === 0 && (
+        <p className="text-xs text-gray-400 mt-1.5">曜日をクリックして参加可能日を選択してください</p>
+      )}
+    </div>
+  );
+}
+
+/* ── Shared field components ── */
 function InputField({
   label, id, type = "text", placeholder, required = true,
 }: {
@@ -83,6 +195,7 @@ function SelectField({
   );
 }
 
+/* ── Student form ── */
 type StudentFormProps = {
   cropDecided: "decided" | "undecided";
   onCropDecidedChange: (v: "decided" | "undecided") => void;
@@ -102,7 +215,7 @@ function StudentForm({ cropDecided, onCropDecidedChange, preferredCrop, onPrefer
         label="あなたはどんな人ですか？"
         id="student-persona"
         placeholder="農業を志したきっかけ、これまでの経験、大切にしていること、将来どんな農家になりたいかなど、自由に教えてください。"
-        rows={5}
+        rows={4}
       />
 
       {/* 育てたい作物 */}
@@ -143,21 +256,19 @@ function StudentForm({ cropDecided, onCropDecidedChange, preferredCrop, onPrefer
         )}
       </div>
 
-      <InputField
-        label="参加可能な日"
-        id="student-available-days"
-        placeholder="例: 毎週土曜日、平日も可"
-      />
+      <ShiftPicker label="毎週参加できる曜日・時間帯" />
+
       <TextareaField
         label="志望動機・農業への想い"
         id="student-motivation"
         placeholder="なぜ農業を仕事にしたいのか、どんな農家になりたいのかを教えてください。"
-        rows={5}
+        rows={4}
       />
     </div>
   );
 }
 
+/* ── Farmer form ── */
 function FarmerForm() {
   return (
     <div className="space-y-5">
@@ -176,7 +287,7 @@ function FarmerForm() {
         label="あなたはどんな農家ですか？後継者に伝えたいこと"
         id="farmer-persona"
         placeholder="農業を始めたきっかけ、大切にしている農業哲学、後継者に受け継いでほしいことなど、自由に書いてください。"
-        rows={5}
+        rows={4}
       />
       <div>
         <label htmlFor="farmer-capacity" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -188,21 +299,19 @@ function FarmerForm() {
           className="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#2D6A4F]/30 focus:border-[#2D6A4F] transition-colors duration-150"
         />
       </div>
-      <TextareaField
-        label="受け入れ条件・シフト希望日時"
-        id="farmer-shift"
-        placeholder="例: 毎週土日の8:00〜15:00、繁忙期（6月〜9月）は平日も可"
-        rows={3}
-      />
+      <ShiftPicker label="受け入れ可能な曜日・時間帯（毎週固定）" />
     </div>
   );
 }
 
+/* ── Company form ── */
 function CompanyForm() {
   return (
     <div className="space-y-5">
-      <InputField label="会社名" id="company-name" placeholder="〇〇株式会社" />
-      <InputField label="担当者名" id="company-contact-name" placeholder="鈴木 一郎" />
+      <div className="grid grid-cols-2 gap-4">
+        <InputField label="会社名" id="company-name" placeholder="〇〇株式会社" />
+        <InputField label="担当者名" id="company-contact-name" placeholder="鈴木 一郎" />
+      </div>
       <InputField label="メールアドレス" id="company-email" type="email" placeholder="contact@company.co.jp" />
       <SelectField
         label="技術カテゴリ"
@@ -227,6 +336,7 @@ function CompanyForm() {
   );
 }
 
+/* ── Success modal ── */
 function SuccessModal({ onClose, savedCrop }: { onClose: () => void; savedCrop?: string }) {
   return (
     <div
@@ -246,7 +356,6 @@ function SuccessModal({ onClose, savedCrop }: { onClose: () => void; savedCrop?:
             <path d="M11 21l7 7 11-13" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
-
         <h2 className="font-shippori text-xl font-bold text-gray-900 mb-3">
           お申し込みありがとうございます！
         </h2>
@@ -270,6 +379,7 @@ function SuccessModal({ onClose, savedCrop }: { onClose: () => void; savedCrop?:
   );
 }
 
+/* ── Main page ── */
 export default function RegisterPage() {
   const [activeTab, setActiveTab] = useState<Tab>("farmer");
   const [submitted, setSubmitted] = useState(false);
@@ -296,7 +406,7 @@ export default function RegisterPage() {
   return (
     <main className="min-h-screen bg-[#F8F4EF]">
       <div className="bg-[#2D6A4F] pt-10 pb-12 px-4">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <h1 className="font-shippori text-3xl md:text-4xl font-bold text-white mb-2">
             参加登録
           </h1>
@@ -307,6 +417,7 @@ export default function RegisterPage() {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 py-10">
+        {/* Tab switcher */}
         <div className="bg-white rounded-2xl border border-gray-100 p-1.5 flex gap-1 mb-6 shadow-sm">
           {TABS.map((tab) => (
             <button
