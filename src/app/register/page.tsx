@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 
-type Tab = "student" | "farmer" | "company";
+type Tab = "student" | "farmer" | "company" | "user";
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "farmer", label: "農家" },
   { key: "student", label: "就農希望者" },
   { key: "company", label: "企業" },
+  { key: "user", label: "一般ユーザー" },
 ];
 
 const PREFECTURES = [
@@ -336,6 +337,43 @@ function CompanyForm() {
   );
 }
 
+/* ── General user form ── */
+function UserForm() {
+  return (
+    <div className="space-y-5">
+      <div className="grid grid-cols-2 gap-4">
+        <InputField label="お名前" id="user-name" placeholder="山田 花子" />
+        <InputField label="メールアドレス" id="user-email" type="email" placeholder="example@email.com" />
+      </div>
+      <SelectField
+        label="お住まいの都道府県"
+        id="user-prefecture"
+        options={PREFECTURES.map((p) => ({ value: p, label: p }))}
+      />
+      <div>
+        <p className="block text-sm font-medium text-gray-700 mb-2">
+          興味のある農産物 <span className="text-gray-400 font-normal text-xs ml-1">（任意・複数可）</span>
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {["野菜全般", "果物", "米・穀物", "ハーブ", "お茶・コーヒー", "きのこ", "こだわらない"].map((item) => (
+            <label key={item} className="flex items-center gap-1.5 cursor-pointer">
+              <input type="checkbox" value={item} className="w-3.5 h-3.5 rounded accent-[#2D6A4F]" />
+              <span className="text-sm text-gray-700">{item}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+      <TextareaField
+        label="直売所・農家に求めること"
+        id="user-message"
+        placeholder="どんな農産物を探しているか、どんな農家さんと繋がりたいかなど、自由にお書きください。"
+        rows={4}
+        required={false}
+      />
+    </div>
+  );
+}
+
 /* ── Success modal ── */
 function SuccessModal({ onClose, savedCrop }: { onClose: () => void; savedCrop?: string }) {
   return (
@@ -443,7 +481,13 @@ export default function RegisterPage() {
                 {activeTab === "student" && "就農希望者の方の登録"}
                 {activeTab === "farmer" && "農家の方の登録"}
                 {activeTab === "company" && "企業の方の登録"}
+                {activeTab === "user" && "一般ユーザー登録"}
               </h2>
+              {activeTab === "user" && (
+                <p className="text-sm text-[#2D6A4F] mt-1 bg-[#2D6A4F]/8 rounded-lg px-3 py-2">
+                  近くの農家直売所情報や旬の農産物の案内をお届けします
+                </p>
+              )}
               <p className="text-sm text-gray-500 mt-1">
                 <span className="text-red-500">*</span> は必須項目です
               </p>
@@ -460,6 +504,7 @@ export default function RegisterPage() {
               )}
               {activeTab === "farmer" && <FarmerForm />}
               {activeTab === "company" && <CompanyForm />}
+              {activeTab === "user" && <UserForm />}
 
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <button

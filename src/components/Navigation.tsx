@@ -5,15 +5,15 @@ import { usePathname } from "next/navigation";
 import { Plant, House, Buildings, NotePencil, MapTrifold } from "@phosphor-icons/react";
 
 const NAV_LINKS = [
-  { href: "/for-farmers", label: "農家の方へ" },
   { href: "/top", label: "Top" },
+  { href: "/for-farmers", label: "農家の方へ" },
   { href: "/for-students", label: "就農希望者へ" },
   { href: "/companies", label: "企業一覧" },
 ] as const;
 
 const MOBILE_TABS = [
-  { href: "/for-farmers", label: "農家", Icon: House },
   { href: "/top", label: "Top", Icon: MapTrifold },
+  { href: "/for-farmers", label: "農家", Icon: House },
   { href: "/for-students", label: "就農希望者", Icon: Plant },
   { href: "/companies", label: "企業一覧", Icon: Buildings },
   { href: "/register", label: "登録", Icon: NotePencil },

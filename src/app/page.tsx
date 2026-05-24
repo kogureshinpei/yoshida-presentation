@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import Testimonials from "@/components/Testimonials";
-import { StoreMapSection } from "@/components/StoreMapSection";
 
 const STORY_BLOCKS = [
   {
@@ -139,9 +138,6 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
-      {/* ── Direct Store Map ── */}
-      <StoreMapSection />
 
       {/* ── Testimonials ── */}
       <Testimonials />
